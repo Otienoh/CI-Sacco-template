@@ -139,6 +139,9 @@
 							<input type="text" class="form-control" name="last_name" placeholder="Last Name">
 						</div>
 						<div class="form-group">
+							<input type="text" class="form-control" name="ID_number" placeholder="ID Number">
+						</div>
+						<div class="form-group">
 							<input type="text" class="form-control" name="town" placeholder="Town">
 						</div>
 						<div class="form-group">
@@ -223,7 +226,7 @@
 		<script src="<?php echo base_url();?>assets/admin/js/main.js"></script>
 		<!-- end: MAIN JAVASCRIPTS -->
 		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-		
+		<script src="<?php echo base_url();?>assets/admin/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
 		<script src="<?php echo base_url();?>assets/admin/js/login.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		<script>

@@ -28,16 +28,11 @@ class Users extends MY_Controller
 			$data['last_name'] = $this->input->post('last_name');
 			$data['identifier'] = $identifier;
 			$sent = $this->send_email($email,'New Memeber Registration', $this->email_template($data));
+			$insert_member = $this->M_Users->register_member_details($log_registration);
 		} else {
 			# code...
 		}
-		
-		$first_name = $this->input->post('first_name');
-		$middle_name = $this->input->post('middle_name');
-		$last_name = $this->input->post('last_name');
-		$town = $this->input->post('town');
-		$gender = $this->input->post('gender');
-		
+				
 	}
 
 	function authenticate()

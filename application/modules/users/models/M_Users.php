@@ -57,6 +57,20 @@ class M_Users extends MY_Model
 		
 	}
 
+	function register_member_details($user_id)
+	{
+		$data = array(
+					'first_name' => $this->input->post('first_name'),
+					'middle_name' => $this->input->post('middle_name'),
+					'last_name' => $this->input->post('last_name'),
+					'gender' => $this->input->post('gender'),
+					'ID_No' => $this->input->post('ID_number'),
+					'town' => $this->input->post('town'),
+					'user_id' => $user_id
+					);
+		$insert = $this->db->insert('members', $data);
+	}
+
 	function identifier_builder($email)
 	{
 		$sql = "SELECT 
