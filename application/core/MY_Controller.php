@@ -9,10 +9,10 @@
 class MY_Controller extends MX_Controller{
     function __construct() {
         parent::__construct();
-        
+        $this->load->module('template');
     }
 
-    	function send_email($email,$subject, $message)
+   	function send_email($email,$subject, $message)
 	{
 		$time=date('Y-m-d');
 		
@@ -38,12 +38,23 @@ class MY_Controller extends MX_Controller{
 			{	
 				// $this->admin_model->store_sent_email($recipient, $subject, $message, $time);
 				// $this->load->view('students_view');
-				print "Email sent";
+				return "Email sent";
 				
 			} else 
 			{
 				show_error($this->email->print_debugger());
+				return "An error occured while sending the email";
 			}
+	}
+
+	function login_reroute()
+	{
+		if ($this->session->userdata('is_logged_in')) {
+			
+		} else {
+			redirect(base_url().'users/login');
+		}
+		
 	}
 
 	public static function truncateStringWords($str, $maxlen=32)
