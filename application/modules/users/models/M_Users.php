@@ -71,6 +71,31 @@ class M_Users extends MY_Model
 		$insert = $this->db->insert('members', $data);
 	}
 
+	function get_inactive_id($identifier)
+	{
+		$query = $this->db->get_where('users', ['activation_key' => $identifier]);
+		if ($query->row()) {
+			$result = $query->row();
+			$id = $result->user_id;
+		} else {
+			$id = NULL;
+		}
+		
+		return $id;
+	}
+
+	function activate_user($activate_id)
+	{
+		$sql = "UPDATE `users`
+				SET
+					`activation_key` = NULL,
+					`status` = 1
+				WHERE `user_id` = '$activate_id'";
+				
+		$result = $this->db->query($sql);
+		return $result;
+	}
+
 	function identifier_builder($email)
 	{
 		$sql = "SELECT 

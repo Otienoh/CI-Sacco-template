@@ -17,7 +17,8 @@ class Users extends MY_Controller
 		$this->load->view('login_v');
 
 	}
-	
+
+
 	function registration()
 	{
 		$email = $this->input->post('email');
@@ -28,11 +29,12 @@ class Users extends MY_Controller
 			$data['last_name'] = $this->input->post('last_name');
 			$data['identifier'] = $identifier;
 			$sent = $this->send_email($email,'New Memeber Registration', $this->email_template($data));
+			$registration['message'] = 'Registration Complete. Activation email has been sent to the email: '.$email;
 			$insert_member = $this->M_Users->register_member_details($log_registration);
 		} else {
-			# code...
+			$registration['message'] = 'Registration Incomplete. Unable to send email to: '.$email;
 		}
-				
+		$this->load->view('registration_v',$registration);		
 	}
 
 	function authenticate()
@@ -73,6 +75,19 @@ class Users extends MY_Controller
 
 	}
 
+	function activate($identifier)
+	{
+		$activate_id = NULL;
+		$activate_id = $this->M_Users->get_inactive_id($identifier);
+		if ($activate_id) {
+			$update = $this->M_Users->activate_user($activate_id);
+			$this->session->set_flashdata('success', 'Registration Complete Login Below');
+		} else {
+			$this->session->set_flashdata('success', '<i class="fa fa-times-circle"></i>UnIdentified Activation Key provided');
+		}
+		redirect(base_url() . 'users/login');
+	}
+
 	function check_existing_email($email)
 	{
 		$email = $this->M_Users->check_email($email);
@@ -94,12 +109,10 @@ class Users extends MY_Controller
 		</style>
 		</style>
 		<body>
-			<p>Hello".$data['first_name'] . " " . $data['last_name'].", </p>
-
-			<div>
-				<p>You have registered as to be a member of the Sacco Management System!</p>
-				<p>Activate your account using this link: <a href='".base_url() . "user/activate/".urlencode($data['identifier'])."'>Click Here</a></p>
-			</div>
+			<p>Hello ".$data['first_name'] . " " . $data['last_name'].", </p>
+			<p>You have registered as to be a member of the Sacco Management System!</p>
+			<p>Activate your account using this link: <a href='".base_url() . "users/activate/".urlencode($data['identifier'])."'>Click Here</a></p>
+			
 		</body>
 		</html>";
 

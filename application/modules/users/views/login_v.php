@@ -45,8 +45,9 @@
 			<div class="logo">ADI <i class="clip-network"></i> Sacco
 			</div>
 			<!-- start: LOGIN BOX -->
+			
 			<div class="box-login">
-				<center><?php echo $this->session->flashdata('success');?></center>
+				<center style="color: green;font-size:20px"><?php echo $this->session->flashdata('success');?></center>
 				<h3>Sign in to your account</h3>
 				<p>
 					Please enter your name and password to log in.
