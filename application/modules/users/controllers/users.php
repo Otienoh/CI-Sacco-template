@@ -18,7 +18,6 @@ class Users extends MY_Controller
 
 	}
 
-
 	function registration()
 	{
 		$email = $this->input->post('email');
@@ -48,6 +47,7 @@ class Users extends MY_Controller
 			{
 				$this->session->set_userdata([
 					'user_id' => $user->id,
+					'user_type' => $user->user_type_id,
 					'is_logged_in' => TRUE
 				]);
 				redirect(base_url() . 'admin');
@@ -55,6 +55,7 @@ class Users extends MY_Controller
 			else if($user->user_type_id == 2){
 				$this->session->set_userdata([
 					'user_id' => $user->id,
+					'user_type' => $user->user_type_id,
 					'is_logged_in' => TRUE
 				]);
 				redirect(base_url() . 'manager');
@@ -62,6 +63,7 @@ class Users extends MY_Controller
 			else if($user->user_type_id == 3){
 				$this->session->set_userdata([
 					'user_id' => $user->id,
+					'user_type' => $user->user_type_id,
 					'is_logged_in' => TRUE
 				]);
 				redirect(base_url() . 'member');
