@@ -14,7 +14,10 @@ class Users extends MY_Controller
 
 	public function login($par=NULL)
 	{
-		$this->load->view('login_v');
+		//$this->load->view('login_v');
+		$data['module'] = "users";
+		$data['view_file'] = "login_v";
+		echo Modules::run('template/home', $data);
 
 	}
 	
