@@ -47,14 +47,21 @@ class MY_Controller extends MX_Controller{
 			}
 	}
 
-	function login_reroute()
+	function login_reroute($type)
 	{
 		if ($this->session->userdata('is_logged_in')) {
-			
+			if ($type != $this->session->userdata('user_type')) {
+				redirect(base_url().$this->template->redirect($this->session->userdata('user_type')));
+			}
 		} else {
 			redirect(base_url().'users/login');
 		}
-		
+	}
+
+	function logout()
+	{
+		$this->session->sess_destroy();
+		redirect(base_url().'users/login');
 	}
 
 	public static function truncateStringWords($str, $maxlen=32)

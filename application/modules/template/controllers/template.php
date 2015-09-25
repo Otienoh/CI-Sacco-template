@@ -7,6 +7,7 @@ class Template extends MY_Controller {
         $this->load->view('home_view', $data);
     }
 	
+
     function member($data){
        // Modules::run('secure_tings/ni_admin');
         $this->load->view('member_view',$data);
@@ -22,8 +23,13 @@ class Template extends MY_Controller {
         $this->load->view('admin_view',$data);
     }
 
-	function sayHello(){
-        echo '<h2>Hello</h2>';
-    }
+
+	
+	function redirect($type)
+	{
+		return $this->M_Template->get_redirect($type);
+	}
+
+
 }
 
