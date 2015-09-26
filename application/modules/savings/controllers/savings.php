@@ -34,8 +34,8 @@ class savings extends MY_Controller
 				$savings_data .= '<tr>
 									<td>'.$count.'</td>
 									<td>'.$value['client'].'</td>
-									<td>'.$value['debit'].'</td>
-									<td>'.$value['credit'].'</td>
+									<td>'.$value['deposit'].'</td>
+									<td>'.$value['withdrawal'].'</td>
 									<td>'.$value['transaction_date'].'</td>
 								</tr>';
 				$count++;

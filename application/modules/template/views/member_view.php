@@ -112,7 +112,7 @@
               </a>
             </li>
             <li>
-              <a href="#"><i class="clip-users"></i>
+              <a href="<?php echo base_url();?>users/profile"><i class="clip-users"></i>
                 <span class="title">Profile</span>
                 <span class="selected"></span>
               </a>
@@ -125,7 +125,7 @@
               </a>
               <ul class="sub-menu">
                 <li>
-                  <a href="#">
+                  <a href="<?php echo base_url();?>loans/create">
                     <span class="title"> Apply Low </span>
                   </a>
                 </li>
@@ -148,12 +148,12 @@
               </a>
               <ul class="sub-menu">
                 <li>
-                  <a href="#">
+                  <a href="<?php echo base_url();?>savings/deposit">
                     <span class="title">Deposit Savings</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="<?php echo base_url();?>savings/mysavings">
                     <span class="title">View Savings</span>
                   </a>
                 </li>

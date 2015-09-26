@@ -22,7 +22,7 @@ class m_savings extends MY_Model
 		$data = array(
 					'user_id' => $user_id,
 					'client' => $this->input->post('client'),
-					'debit' => $this->input->post('amount'));
+					'deposit' => $this->input->post('amount'));
 		$insert = $this->db->insert('savings', $data);
 	}
 }

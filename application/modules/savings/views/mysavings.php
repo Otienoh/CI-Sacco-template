@@ -60,8 +60,8 @@
 							<tr>
 								<th>#</th>
 								<th>Client</th>
-								<th>Debit</th>
-								<th>Credit</th>
+								<th>Deposits</th>
+								<th>Withdrawals</th>
 								<th>Transaction Date</th>
 							</tr>
 						</thead>
