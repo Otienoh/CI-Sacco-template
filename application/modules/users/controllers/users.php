@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * 
 */
@@ -8,7 +8,7 @@ class Users extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('M_Users');
+		$this->load->model('m_users');
 		$this->load->module('hash');
 	}
 
@@ -21,28 +21,34 @@ class Users extends MY_Controller
 
 	}
 
+	function registration_complete()
+	{
+		$this->load->view('registration_v');
+	}
+
 	function registration()
 	{
 		$email = $this->input->post('email');
-		$identifier = $this->M_Users->identifier_builder($email);
-		$log_registration = $this->M_Users->register_logs($email,$identifier,$this->hash->password($this->input->post('password')));
+		$identifier = $this->m_users->identifier_builder($email);
+		$log_registration = $this->m_users->register_logs($email,$identifier,$this->hash->password($this->input->post('password')));
 		if ($log_registration) {
 			$data['first_name'] = $this->input->post('first_name');
 			$data['last_name'] = $this->input->post('last_name');
 			$data['identifier'] = $identifier;
 			$sent = $this->send_email($email,'New Memeber Registration', $this->email_template($data));
-			$registration['message'] = 'Registration Complete. Activation email has been sent to the email: '.$email;
-			$insert_member = $this->M_Users->register_member_details($log_registration);
+			// $registration['message'] = 'Registration Complete. Activation email has been sent to the email: '.$email;
+			$this->session->set_flashdata('register', 'Registration Complete. Activation email has been sent to the email: '.$email);
+			$insert_member = $this->m_users->register_member_details($log_registration);
 		} else {
-			$registration['message'] = 'Registration Incomplete. Unable to send email to: '.$email;
+			$this->session->set_flashdata('register', 'Registration Incomplete. Unable to send email to: '.$email);
+			// $registration['message'] = 'Registration Incomplete. Unable to send email to: '.$email;
 		}
-		$this->load->view('registration_v',$registration);		
+		redirect('users/registration_v');		
 	}
 
 	function authenticate()
 	{
-		$user = $this->M_Users->get_active_user($this->input->post('username'));
-		// echo "<pre>";print_r($user);die();
+		$user = $this->m_users->get_active_user($this->input->post('username'));
 
 		if($user && $this->hash->passwordCheck($this->input->post('password'), $user->password))
 		{
@@ -83,9 +89,9 @@ class Users extends MY_Controller
 	function activate($identifier)
 	{
 		$activate_id = NULL;
-		$activate_id = $this->M_Users->get_inactive_id($identifier);
+		$activate_id = $this->m_users->get_inactive_id($identifier);
 		if ($activate_id) {
-			$update = $this->M_Users->activate_user($activate_id);
+			$update = $this->m_users->activate_user($activate_id);
 			$this->session->set_flashdata('success', 'Registration Complete Login Below');
 		} else {
 			$this->session->set_flashdata('success', '<i class="fa fa-times-circle"></i>UnIdentified Activation Key provided');
@@ -95,7 +101,7 @@ class Users extends MY_Controller
 
 	function check_existing_email($email)
 	{
-		$email = $this->M_Users->check_email($email);
+		$email = $this->m_users->check_email($email);
 
 		echo json_encode($email);
 	}

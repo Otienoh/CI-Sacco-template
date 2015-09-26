@@ -104,13 +104,14 @@ class M_Users extends MY_Model
 				FROM `users` `usr`
 				LEFT JOIN `user_types` `ustyp`
 				ON `usr`.`user_type_id` = `ustyp`.`user_type_id`
-				WHERE `usr`.`email` = 'admin@sacco.com'";
+				WHERE `usr`.`email` = '$email'";
 		$result = $this->db->query($sql);
 		$result = $result->result_array();
-
+		$result = $result[0];
+		// echo "<pre>";print_r($result);die();
 		$scope = date('MD');
 		$encrypt_key = $this -> encrypt -> get_key();
-		$input = $email.$result[0]['user_type'].$scope.$encrypt_key.$result[0]['email'];
+		$input = $email.$result['user_type'].$scope.$encrypt_key.$result['email'];
 		$identifier = strtoupper(hash('sha256', $input));
 
 		return $identifier;

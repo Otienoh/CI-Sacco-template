@@ -9,7 +9,7 @@
   <!--<![endif]-->
   <!-- start: HEAD -->
   
-<!-- Mirrored from www.cliptheme.com/preview/admin/clip-one/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 Sep 2015 15:55:49 GMT -->
+
 <head>
     <title>AdiSacco</title>
     <!-- start: META -->
@@ -322,13 +322,24 @@
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/fullcalendar/fullcalendar/fullcalendar.js"></script>
     <script src="<?php echo base_url();?>assets/admin/js/index.js"></script>
-    <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-    <script>
+    <script src="<?php echo base_url();?>assets/admin/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+    <script src="<?php echo base_url();?>assets/admin/js/form-wizard.js"></script>
+
+
+
+
+    <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+   <script>
       jQuery(document).ready(function() {
         Main.init();
-        Index.init();
+        // Index.init();
+        FormWizard.init();
       });
     </script>
+
+    <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    
   </body>
   <!-- end: BODY -->
 
