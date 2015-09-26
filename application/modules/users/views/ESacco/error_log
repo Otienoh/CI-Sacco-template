@@ -1,0 +1,1 @@
+[25-Sep-2015 18:56:47 Africa/Nairobi] PHP Fatal error:  Call to a member function password() on a non-object in /home/arcturus/public_html/ESacco/application/modules/users/controllers/users.php on line 28

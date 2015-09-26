@@ -10,7 +10,7 @@ parent::__construct();
 function home() {
 	//echo "welcome to Dashboard";
 	$data['section'] = "ADI Sacco";
-    $data['subtitle'] = "Members";
+    $data['subtitle'] = "Member Module";
   	$data['page_title'] = "Dashboard";
   	$data['subpage_title'] = "overview & stats";
 	$data['module'] = "dashboard";
