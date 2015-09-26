@@ -118,13 +118,14 @@ class Users extends MY_Controller
 				echo Modules::run('template/member', $data);
 			} else {
 				$data['user_details'] = array_merge($module_details,$user_data);
+				// echo "<pre>";print_r($data['user_details']);die();
 				$data['additional_info'] = $this->additional_info($data['user_details']);
 				$data['section'] = "ADI Sacco";
 			    $data['subtitle'] = "Members";
 			  	$data['page_title'] = "Profile";
 			  	$data['subpage_title'] = "overview & stats";
 				$data['module'] = "users";
-				$data['view_file'] = "member_profile";
+				$data['view_file'] = "profile";
 				echo Modules::run('template/member', $data);
 			}
 		} else {
@@ -144,7 +145,27 @@ class Users extends MY_Controller
 
 	function update_profile()
 	{
-		$update = $this->m_users->update__user_profile();
+		$path = NULL;
+		$upload_image = 'cover';
+		$upload_path = '././assets/profiles/';
+		$files = $_FILES['cover'];
+
+		$file_ext = explode(".", $files['name']);
+        $file_ext = end($file_ext);
+
+		$allowed = array('jpg','png','jpeg');
+
+		if(in_array($file_ext, $allowed)){
+			$image_name = $files['name'];
+    		$temp_path = $files['tmp_name'];
+    		move_uploaded_file($temp_path, $upload_path.$image_name);
+    		$path = base_url().'assets/profiles/'.$image_name;
+    		
+		}else{
+			print "Image format not supported";
+		}
+		
+		$update = $this->m_users->update__user_profile($path);
 		redirect('users/profile');
 	}
 
@@ -161,24 +182,24 @@ class Users extends MY_Controller
 										Residence
 									</label>
 									<span class="input-icon">
-										<input class="form-control" type="text" value="'.$data['residence'].'">
-										<i class="clip-twitter"></i> </span>
+										<input name="residence" class="form-control" type="text" value="'.$data['residence'].'">
+										
 								</div>
 								<div class="form-group">
 									<label class="control-label">
 										Town
 									</label>
 									<span class="input-icon">
-										<input class="form-control" type="text" value="'.$data['town'].'">
-										<i class="clip-facebook"></i> </span>
+										<input name="town" class="form-control" type="text" value="'.$data['town'].'">
+										
 								</div>
 								<div class="form-group">
 									<label class="control-label">
 										County
 									</label>
 									<span class="input-icon">
-										<input class="form-control" type="text" value="'.$data['county'].'">
-										<i class="clip-google-plus"></i> </span>
+										<input name="county" class="form-control" type="text" value="'.$data['county'].'">
+										
 								</div>
 							</div>
 							

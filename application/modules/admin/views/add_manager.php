@@ -94,15 +94,6 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">
-									Phone Number <span class="symbol required"></span>
-								</label>
-								<div class="col-sm-7">
-									<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone NUmber" required>
-								</div>
-							</div>
-						
-							<div class="form-group">
-								<label class="col-sm-3 control-label">
 									Email <span class="symbol required"></span>
 								</label>
 								<div class="col-sm-7">
@@ -112,6 +103,16 @@
 									<i class="fa fa-times-circle"></i> Email address already in use.
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">
+									Phone Number <span class="symbol required"></span>
+								</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone NUmber" required>
+								</div>
+							</div>
+						
+							
 							<div class="form-group">
 								<div class="col-sm-2 col-sm-offset-8">
 									<button type="submit" class="btn btn-blue next-step btn-block" id="registration_button">
@@ -128,16 +129,18 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#email_alert').hide();
-          $('#email_registration').focusout(function(){
+          $('#email').focusout(function(){
               em = $(this).val();
+              console.log(em);
               $.get('<?php echo base_url();?>users/check_existing_email/'+em, function (data) {
                   obj = jQuery.parseJSON(data);
+                  console.log(obj);
                   if (jQuery.isEmptyObject(obj)) {
-                      $('#email_alert').hide();
-                      $('#registration_button').removeAttr('disabled');
+                      jQuery('#email_alert').hide();
+                      jQuery('#registration_button').removeAttr('disabled');
                   } else{
-                      $('#email_alert').show();
-                      $('#registration_button').attr('disabled', 'true');
+                      jQuery('#email_alert').show();
+                      jQuery('#registration_button').attr('disabled', 'true');
                   }
               });
           }); 

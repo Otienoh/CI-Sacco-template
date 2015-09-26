@@ -25,7 +25,7 @@
 			<div class="tab-content">
 				<!--  -->
 				<div id="#" class="">
-					<form action="<?php echo base_url();?>users/update_profile" method="post" role="form" id="form">
+					<form action="<?php echo base_url();?>users/update_profile" enctype="multipart/form-data" method="post" role="form" id="form">
 						<div class="row">
 							<div class="col-md-12">
 								<h3>Account Info</h3>
@@ -77,11 +77,11 @@
 									</label>
 									<div>
 										<label class="radio-inline">
-											<input type="radio" class="grey" value="" name="gender" id="Female" <?php echo $female_check?>>
+											<input type="radio" class="grey" value="Female" name="gender" id="female" <?php echo $female_check?>>
 											Female
 										</label>
 										<label class="radio-inline">
-											<input type="radio" class="grey" value="" name="gender"  id="Male" <?php echo $male_check?>>
+											<input type="radio" class="grey" value="Male" name="gender"  id="male" <?php echo $male_check?>>
 											Male
 										</label>
 									</div>
@@ -93,7 +93,7 @@
 											<label class="control-label">
 												Occupation
 											</label>
-											<input class="form-control tooltips" name="occupation" id="occupation" placeholder="London (UK)" type="text" data-original-title="We'll display it when you write reviews" data-rel="tooltip"  title="" data-placement="top">
+											<input class="form-control tooltips" name="occupation" id="occupation" type="text" value="<?php echo $user_details['occuppation']?>" data-original-title="We'll display it when you write reviews" data-rel="tooltip"  title="" data-placement="top">
 										</div>
 									</div>
 								</div>
@@ -104,7 +104,7 @@
 										Cover Photo:
 									</label>
 									<div class = "image-holder" id = 'imagePreview' style=""></div>
-                                    <div class="col-sm-9"><input type = "file" class = "form-control" name = "cover" id = "uploadImage" required/></div>
+                                    <div class="col-sm-9"><input type = "file" class = "form-control" name = "cover" id = "uploadImage" value="<?php echo $path?>"/></div>
                                 </div>
                                 <?php } ?>
 							</div>
