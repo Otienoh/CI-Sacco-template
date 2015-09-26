@@ -97,7 +97,11 @@ class Users extends MY_Controller
 	{
 		$email = $this->m_users->check_email($email);
 
-		echo json_encode($email);
+		if($email){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
 	}
 
 	function profile()
@@ -130,14 +134,15 @@ class Users extends MY_Controller
 			}
 		} else {
 			$data['user_details'] = array_merge($module_details,$user_data);
-			// echo "<pre>";print_r($data['user_details']);die();
+			
 			$data['section'] = "ADI Sacco";
 		    $data['subtitle'] = $user_data['user_table'];
 		  	$data['page_title'] = "Profile";
 		  	$data['subpage_title'] = "overview & stats";
 			$data['module'] = "users";
 			$data['view_file'] = "profile";
-			echo Modules::run('template/member', $data);
+			// echo "<pre>";print_r($user_data['user_type']);die();
+			echo Modules::run('template/'.$user_data['user_type'], $data);
 		}
 		
 		

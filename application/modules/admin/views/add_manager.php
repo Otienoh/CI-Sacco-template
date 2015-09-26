@@ -99,8 +99,13 @@
 								<div class="col-sm-7">
 									<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
 								</div>
-								<div class="alert alert-danger" id="email_alert">
-									<i class="fa fa-times-circle"></i> Email address already in use.
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">
+									<span class="symbol required"></span>
+								</label>
+								<div class="col-sm-7">
+									<p style="color:red;"><?php if($this->session->flashdata('available')){echo $this->session->flashdata('available'); }?></p>
 								</div>
 							</div>
 							<div class="form-group">
@@ -126,24 +131,4 @@
 		<!-- end: FORM WIZARD PANEL -->
 	</div>
 </div>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#email_alert').hide();
-          $('#email').focusout(function(){
-              em = $(this).val();
-              console.log(em);
-              $.get('<?php echo base_url();?>users/check_existing_email/'+em, function (data) {
-                  obj = jQuery.parseJSON(data);
-                  console.log(obj);
-                  if (jQuery.isEmptyObject(obj)) {
-                      jQuery('#email_alert').hide();
-                      jQuery('#registration_button').removeAttr('disabled');
-                  } else{
-                      jQuery('#email_alert').show();
-                      jQuery('#registration_button').attr('disabled', 'true');
-                  }
-              });
-          }); 
-	});
-</script>
 

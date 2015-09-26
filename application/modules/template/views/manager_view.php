@@ -120,16 +120,6 @@
             </li>
             <li>
               <a href="javascript:void(0)"><i class="clip-users"></i>
-                <span class="title"> MANAGERS </span><i class="icon-arrow"></i>
-                <span class="selected"></span>
-              </a>
-              <ul class="sub-menu">
-                <li><a href="<?php echo base_url();?>admin/managers"><span class="title"> Register Managers </span></a></li>
-                <li><a href="<?php echo base_url();?>admin/managers_listing"><span class="title"> View Managers </span></a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="javascript:void(0)"><i class="clip-users"></i>
                 <span class="title"> MEMBERS </span><i class="icon-arrow"></i>
                 <span class="selected"></span>
               </a>

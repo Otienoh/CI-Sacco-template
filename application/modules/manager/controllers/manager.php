@@ -20,7 +20,7 @@ class Manager extends MY_Controller
   	$data['subpage_title'] = "overview & stats";
 	$data['module'] = "dashboard";
 	$data['view_file'] = "home";
-	echo Modules::run('template/admin', $data);
+	echo Modules::run('template/manager', $data);
 	}
 }
 ?>

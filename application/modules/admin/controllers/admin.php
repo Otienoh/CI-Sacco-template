@@ -49,6 +49,11 @@ class Admin extends MY_Controller
 
 	function manager_registration()
 	{
+		$this->load->module('users');
+		if($this->users->check_existing_email($this->input->post('email'))){
+			$this->session->set_flashdata('available','The email Provided already exists try another one!');
+			redirect('admin/managers');
+		}
 		$register_logs = $this->m_admin->register_manager_logs($this->hash->password($this->config->item('default_password')));
 		$register_manager = $this->m_admin->register_manager($register_logs);
 		redirect('admin/managers_listing');
