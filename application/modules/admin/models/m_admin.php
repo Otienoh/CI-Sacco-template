@@ -42,6 +42,7 @@ class m_admin extends MY_Model
 					'last_name' => $this->input->post('last_name'),
 					'ID_No' => $this->input->post('ID_No'),
 					'gender' => $this->input->post('gender'),
+					'mobile_number' =>$this->input->post('phone'),
 					'title' => $this->input->post('title'),
 					'user_id' => $user_id);
 

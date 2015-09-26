@@ -92,7 +92,14 @@
 									<input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
 								</div>
 							</div>
-							
+							<div class="form-group">
+								<label class="col-sm-3 control-label">
+									Phone Number <span class="symbol required"></span>
+								</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone NUmber" required>
+								</div>
+							</div>
 						
 							<div class="form-group">
 								<label class="col-sm-3 control-label">

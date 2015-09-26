@@ -102,9 +102,10 @@ class Users extends MY_Controller
 
 	function profile()
 	{
+		$data['additional_info'] = '';
 		$user_data = $this->m_users->user_data($this->session->userdata('user_id'));
+		$module_details = $this->m_users->user_details($user_data['user_table'], $this->session->userdata('user_id'));
 		if ($user_data['user_table'] == 'members') {
-			$module_details = $this->m_users->user_details($user_data['user_table'], $this->session->userdata('user_id'));
 			// echo "<pre>";print_r($module_details);die();
 			if ($module_details['complete'] == 1) {
 				$data['user_details'] = array_merge($module_details,$user_data);
@@ -117,6 +118,7 @@ class Users extends MY_Controller
 				echo Modules::run('template/member', $data);
 			} else {
 				$data['user_details'] = array_merge($module_details,$user_data);
+				$data['additional_info'] = $this->additional_info($data['user_details']);
 				$data['section'] = "ADI Sacco";
 			    $data['subtitle'] = "Members";
 			  	$data['page_title'] = "Profile";
@@ -126,6 +128,8 @@ class Users extends MY_Controller
 				echo Modules::run('template/member', $data);
 			}
 		} else {
+			$data['user_details'] = array_merge($module_details,$user_data);
+			// echo "<pre>";print_r($data['user_details']);die();
 			$data['section'] = "ADI Sacco";
 		    $data['subtitle'] = $user_data['user_table'];
 		  	$data['page_title'] = "Profile";
@@ -136,6 +140,50 @@ class Users extends MY_Controller
 		}
 		
 		
+	}
+
+	function update_profile()
+	{
+		$update = $this->m_users->update__user_profile();
+		redirect('users/profile');
+	}
+
+	function additional_info($data)
+	{
+		$info = '<div class="row">
+							<div class="col-md-12">
+								<h3>Additional Info</h3>
+								<hr>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">
+										Residence
+									</label>
+									<span class="input-icon">
+										<input class="form-control" type="text" value="'.$data['residence'].'">
+										<i class="clip-twitter"></i> </span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">
+										Town
+									</label>
+									<span class="input-icon">
+										<input class="form-control" type="text" value="'.$data['town'].'">
+										<i class="clip-facebook"></i> </span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">
+										County
+									</label>
+									<span class="input-icon">
+										<input class="form-control" type="text" value="'.$data['county'].'">
+										<i class="clip-google-plus"></i> </span>
+								</div>
+							</div>
+							
+						</div>';
+		return $info;
 	}
 
 	function complete_profile()

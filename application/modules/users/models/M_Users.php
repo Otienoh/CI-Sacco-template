@@ -109,6 +109,58 @@ class m_users extends MY_Model
 		$update = $this->db->update('members',$data);
 	}
 
+	function update__user_profile($photo_path=NULL)
+	{
+		if ($this->session->userdata('user_type')==1) {
+			$data = array(
+				'first_name' => $this->input->post('first_name'),
+				'middle_name' => $this->input->post('middle_name'),
+				'last_name' => $this->input->post('last_name'),
+				'gender' => $this->input->post('gender')
+						);
+			
+			$table = 'admin';
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$update = $this->db->update($table,$data);
+
+		}else if ($this->session->userdata('user_type')==2) {
+			$data = array(
+					'first_name' => $this->input->post('first_name'),
+					'middle_name' => $this->input->post('middle_name'),
+					'last_name' => $this->input->post('last_name'),
+					'gender' => $this->input->post('gender'),
+					'mobile_number' => $this->input->post('phone'),
+					'passport_images' => $photo_path
+						);
+			$table = 'managers';
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$update = $this->db->update($table,$data);
+
+		}else if ($this->session->userdata('user_type')==3) {
+			$data = array(
+					'first_name' => $this->input->post('first_name'),
+					'middle_name' => $this->input->post('middle_name'),
+					'last_name' => $this->input->post('last_name'),
+					'gender' => $this->input->post('gender'),
+					'ID_No' =>$this->input->post('ID_No'),
+					'occuppation' => $this->input->post('occupation'),
+					'mobile_number' => $this->input->post('phone'),
+					'county' => $this->input->post('county'),
+					'town' => $this->input->post('town'),
+					'residence' => $this->input->post('residence'),
+					'passport_images' => $photo_path
+						);
+			$table = 'members';
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$update = $this->db->update($table,$data);
+		}
+
+		$newData = array('email' => $this->input->post('email'));
+
+		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$update = $this->db->update('users',$newData);
+	}
+
 	function identifier_builder($email)
 	{
 		$sql = "SELECT 
