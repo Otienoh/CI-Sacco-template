@@ -2,7 +2,7 @@
 /**
 * 
 */
-class M_Users extends MY_Model
+class m_users extends MY_Model
 {
 	
 	function __construct()
@@ -96,6 +96,19 @@ class M_Users extends MY_Model
 		return $result;
 	}
 
+	function complete_member($user_id)
+	{
+		$data = array(
+					'occuppation' => $this->input->post('occupation'),
+					'mobile_number' => $this->input->post('mobile_number'),
+					'county' => $this->input->post('county'),
+					'town' => $this->input->post('town'),
+					'residence' => $this->input->post('residence'),
+					'complete' => 0);
+		$this->db->where('user_id', $user_id);
+		$update = $this->db->update('members',$data);
+	}
+
 	function identifier_builder($email)
 	{
 		$sql = "SELECT 
@@ -104,7 +117,7 @@ class M_Users extends MY_Model
 				FROM `users` `usr`
 				LEFT JOIN `user_types` `ustyp`
 				ON `usr`.`user_type_id` = `ustyp`.`user_type_id`
-				WHERE `usr`.`email` = 'admin@sacco.com'";
+				WHERE `usr`.`email` = '$email'";
 		$result = $this->db->query($sql);
 		$result = $result->result_array();
 
@@ -116,7 +129,13 @@ class M_Users extends MY_Model
 		return $identifier;
 	}
 
+	function user_details($table, $user_id)
+	{
+		$query = $this->db->get_where($table, ['user_id' => $user_id]);
+		$result = $query->result_array();
 
+		return $result[0];
+	}
 	
 }
 ?>

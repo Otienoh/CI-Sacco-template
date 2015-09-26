@@ -13,7 +13,13 @@ class Member extends MY_Controller
 
 	public function index()
 	{
-		$this->template->member();		
+		$data['section'] = "ADI Sacco";
+	    $data['subtitle'] = "Members";
+	  	$data['page_title'] = "Dashboard";
+	  	$data['subpage_title'] = "overview & stats";
+		$data['module'] = "dashboard";
+		$data['view_file'] = "home";
+		echo Modules::run('template/member', $data);	
 	}
 }
 ?>

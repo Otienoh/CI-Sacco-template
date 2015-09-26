@@ -10,6 +10,7 @@ class MY_Controller extends MX_Controller{
     function __construct() {
         parent::__construct();
         $this->load->module('template');
+        $this->load->module('hash');
     }
 
    	function send_email($email,$subject, $message)
@@ -56,6 +57,13 @@ class MY_Controller extends MX_Controller{
 		} else {
 			redirect(base_url().'users/login');
 		}
+	}
+
+	function _logged_in()
+	{
+		if (!$this->session->userdata('is_logged_in')) {
+			redirect(base_url().'users/login');
+		} 
 	}
 
 	function logout()

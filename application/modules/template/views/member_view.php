@@ -32,12 +32,16 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/perfect-scrollbar/src/perfect-scrollbar.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/css/theme_light.css" type="text/css" id="skin_color">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/css/print.css" type="text/css" media="print"/>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/select2/select2.css">
     <!--[if IE 7]>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/font-awesome/css/font-awesome-ie7.min.css">
     <![endif]-->
     <!-- end: MAIN CSS -->
     <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/fullcalendar/fullcalendar/fullcalendar.css">
+     <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+
+    
     <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
     <link rel="shortcut icon" href="favicon.ico" />
   </head>
@@ -79,7 +83,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a href="#">
+                  <a href="<?php echo base_url();?>users/logout">
                     <i class="clip-exit"></i>
                     &nbsp;Log Out
                   </a>
@@ -112,7 +116,7 @@
               </a>
             </li>
             <li>
-              <a href="#"><i class="clip-users"></i>
+              <a href="<?php echo base_url();?>users/profile"><i class="clip-users"></i>
                 <span class="title">Profile</span>
                 <span class="selected"></span>
               </a>
@@ -148,13 +152,13 @@
               </a>
               <ul class="sub-menu">
                 <li>
-                  <a href="#">
-                    <span class="title">Deposit Savings</span>
+                  <a href="<?php echo base_url();?>savings/mysavings">
+                    <span class="title">View Savings</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    <span class="title">View Savings</span>
+                  <a href="<?php echo base_url();?>savings/deposit">
+                    <span class="title">Deposit Savings</span>
                   </a>
                 </li>
                 <li>
@@ -299,7 +303,7 @@
     <script type="text/javascript" src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/1.10.2/jquery.min.js"></script>
     <![endif]-->
     <!--[if gte IE 9]><!-->
-    <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+   
     <!--<![endif]-->
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -312,6 +316,7 @@
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-cookie/jquery.cookie.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
     <script src="<?php echo base_url();?>assets/admin/js/main.js"></script>
+    <script src="<?php echo base_url();?>assets/admin/plugins/select2/select2.min.js"></script>
     <!-- end: MAIN JAVASCRIPTS -->
     <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script src="<?php echo base_url();?>assets/admin/plugins/flot/jquery.flot.js"></script>
@@ -321,14 +326,18 @@
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/fullcalendar/fullcalendar/fullcalendar.js"></script>
+    <script src="<?php echo base_url();?>assets/admin/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+     <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
     <script src="<?php echo base_url();?>assets/admin/js/index.js"></script>
+    <script src="<?php echo base_url();?>assets/admin/js/form-wizard.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script>
-      jQuery(document).ready(function() {
-        Main.init();
-        Index.init();
-      });
-    </script>
+  jQuery(document).ready(function() {
+    Main.init();
+    // Index.init();
+    FormWizard.init();
+  });
+</script>
   </body>
   <!-- end: BODY -->
 

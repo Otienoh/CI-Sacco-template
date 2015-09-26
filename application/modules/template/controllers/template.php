@@ -16,6 +16,7 @@ class Template extends MY_Controller {
 	function manager($data){
        // Modules::run('secure_tings/ni_admin');
         $this->load->view('manager_view',$data);
+
     }
 
     function admin($data){
