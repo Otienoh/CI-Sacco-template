@@ -132,4 +132,23 @@ function submit (){
 		return $query;
 	}
 
+	function loan_preview($loan_id)
+	{
+		$this->load->model('m_loans');
+		$this->load->module('savings');
+		$data['loan_details'] = $this->_custom_query($this->m_loans->get_loan_details($loan_id))->result_array();
+		$data['guarantor1'] = $this->_custom_query($this->m_loans->loan_guarantor($data['loan_details'][0]['guarantor1']))->result_array();
+		$data['guarantor2'] = $this->_custom_query($this->m_loans->loan_guarantor($data['loan_details'][0]['guarantor2']))->result_array();
+		$data['savings'] = $this->savings->member_savings($data['loan_details'][0]['user_id']);
+		$name = $data['loan_details'][0]['middle_name']." ".$data['loan_details'][0]['first_name'];
+		$data['section'] = "ADI Sacco";
+	    $data['subtitle'] = "Manager";
+	  	$data['page_title'] = "Loans Preview";
+	  	$data['subpage_title'] = $name;
+		$data['module'] = "manager";
+		$data['view_file'] = "loan_preview";
+		// echo "<pre>";print_r($data);die();
+		echo Modules::run('template/manager', $data);
+	}
+
 }

@@ -100,9 +100,23 @@ function get_loan_details($loan_id)
 			FROM `loans` `ln`
 			JOIN `users` `us` ON `ln`.`user_id` = `us`.`user_id`
 			JOIN `loan_types` `lt` ON `ln`.`loan_type` = `lt`.`loan_type_id`
-			JOIN `members` `mb` ON `mb`.`user_id` = `ln`.`user_id`";
-	$query = $this->db->query($sql);
-	return $query;
+			JOIN `members` `mb` ON `mb`.`user_id` = `ln`.`user_id`
+			WHERE `ln`.`loan_id` = '$loan_id'";
+	return $sql;
+}
+
+function loan_guarantor($member_id)
+{
+	$sql = "SELECT
+				`mb`.`first_name`,
+				`mb`.`middle_name`,
+				`mb`.`last_name`,
+				`mb`.`mobile_number`,
+				SUM(`sv`.`deposit`)-SUM(`sv`.`withdrawal`) AS 'current_savings'
+			FROM `members` `mb`
+			JOIN `savings` `sv` ON `mb`.`user_id` = `sv`.`user_id`
+			WHERE `mb`.`member_id` = '$member_id'";
+	return $sql;
 }
 
 }

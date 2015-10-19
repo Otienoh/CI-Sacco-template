@@ -54,7 +54,7 @@ class Manager extends MY_Controller
 									<td>'.$value['guarantor2'].'</td>
 									<td>'.$value['is_paid'].'</td>
 									<td>'.$value['status'].'</td>
-									<td><a href="'.base_url().'manager/loan_preview/'.$value['loan_id'].'"><button class="btn btn-primary">Preview Loan</button></a></td>
+									<td><a href="'.base_url().'loans/loan_preview/'.$value['loan_id'].'"><button class="btn btn-primary">Preview Loan</button></a></td>
 								</tr>';
 				$count++;
 			}
@@ -68,8 +68,17 @@ class Manager extends MY_Controller
 
 	function loan_preview($loan_id){
 		$this->load->model('m_manager');
-		$loan_details = $this->loans->_custom_query($this->m_manager->get_loan_details($loan_id))->result_array();
-		echo "<pre>";print_r($loan_details);
+		$data['loan_details'] = $this->loans->_custom_query($this->m_manager->get_loan_details($loan_id))->result_array();
+		$name = $data['loan_details'][0]['middle_name']." ".$data['loan_details'][0]['first_name'];
+		// echo "<pre>";print_r($data['loan_details']);die();
+		$data['section'] = "ADI Sacco";
+	    $data['subtitle'] = "Manager";
+	  	$data['page_title'] = "Loans Preview";
+	  	$data['subpage_title'] = $name;
+		$data['module'] = "manager";
+		$data['view_file'] = "loan_preview";
+	
+		echo Modules::run('template/manager', $data);
 	}
 }
 ?>

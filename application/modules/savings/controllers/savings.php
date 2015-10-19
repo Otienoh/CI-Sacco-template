@@ -12,6 +12,11 @@ class savings extends MY_Controller
 		$this->load->model('m_savings');
 	}
 
+	function _custom_query($mysql_query) {
+		$query = $this->m_savings->_custom_query($mysql_query);
+		return $query;
+	}
+
 	function mysavings()
 	{
 		$data['savings_data'] = $this->get_mysavings();
@@ -63,6 +68,11 @@ class savings extends MY_Controller
 	{
 		$mydepo = $this->m_savings->add_savings($this->session->userdata('user_id'));
 		redirect('savings/mysavings');
+	}
+
+	function member_savings($user_id){
+		$member_savings = $this->_custom_query($this->m_savings->get_savings_details($user_id))->result_array();
+		return $member_savings;
 	}
 }
 ?>
