@@ -38,7 +38,7 @@ class Users extends MY_Controller
 		}
 		$this->load->view('registration_v',$registration);		
 	}
-
+	
 	function authenticate()
 	{
 		$user = $this->m_users->get_active_user($this->input->post('username'));

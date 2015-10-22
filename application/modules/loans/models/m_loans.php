@@ -94,4 +94,15 @@ $query = $this->db->query($mysql_query);
 return $query;
 }
 
+function get_loan_details($loan_id)
+{
+	$sql = "SELECT *
+			FROM `loans` `ln`
+			JOIN `users` `us` ON `ln`.`user_id` = `us`.`user_id`
+			JOIN `loan_types` `lt` ON `ln`.`loan_type` = `lt`.`loan_type_id`
+			JOIN `members` `mb` ON `mb`.`user_id` = `ln`.`user_id`";
+	$query = $this->db->query($sql);
+	return $query;
+}
+
 }
