@@ -242,5 +242,6 @@ class Users extends MY_Controller
 
 		return $template;
 	}
+
 }
 ?>

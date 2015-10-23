@@ -12,7 +12,8 @@ class Loans extends MY_Controller
 		$data= $this->get_data_from_post();
 		$this->load->model('m_loans');
 		$data['maloantype']  = $this->m_loans->get_loan_type();
-        $data['section'] = "ADI Sacco";
+		$data['repayment_periods'] = $this->application_repayment_periods();
+		$data['section'] = "ADI Sacco";
 		$data['subtitle'] = "Loan Module";
 		$data['page_title'] = "Loan";
 		$data['subpage_title'] = "Application";
@@ -20,6 +21,44 @@ class Loans extends MY_Controller
 		$data['view_file'] = "loan_application_view";
 		//echo "<pre>";print_r($data);die;
 		echo Modules::run('template/member', $data);
+	}
+
+	function view_loans($user_id=NULL)
+	{
+		if($user_id){
+			$loans = $this->get_where_custom('user_id', $user_id)->result_array();
+		}else {
+			$loans = $this->get('loan_id')->result_array();
+		}
+
+		$data['section'] = "ADI Sacco";
+	    $data['subtitle'] = "Member";
+	  	$data['page_title'] = "Loans";
+	  	$data['subpage_title'] = "overview & stats";
+		$data['module'] = "loans";
+		$data['view_file'] = "list_loans";
+	
+		$data['loans'] = $this->dataTable_loans($loans);
+		// echo "<pre>";print_r($data['loans']);die();
+		echo Modules::run('template/member', $data);
+		
+	}
+
+	function guarantee_requests()
+	{
+		$data['section'] = "ADI Sacco";
+	    $data['subtitle'] = "Member";
+	  	$data['page_title'] = "Loans";
+	  	$data['subpage_title'] = "Guarantee Requests";
+		$data['module'] = "loans";
+		$data['view_file'] = "guarantee_request";
+	
+		echo Modules::run('template/member', $data);
+	}
+
+	function view_guarantors()
+	{
+
 	}
 
 	function get_data_from_post(){
@@ -36,45 +75,105 @@ class Loans extends MY_Controller
 	}
 
 
-function submit (){
-  
-  $this->load->library('form_validation');
-  $this->form_validation->set_rules('loan_amount', 'Loan Amount', 'required|xss_clean');
-  $this->form_validation->set_rules('loan_purpose', 'Loan Purpose', 'required|xss_clean');
-  $this->form_validation->set_rules('loan_type', 'Loan Type', 'required|xss_clean');
-  $this->form_validation->set_rules('months', 'Months', 'required|xss_clean');
-  $this->form_validation->set_rules('month_income', 'Monthly Income ', 'required|xss_clean');
-  $this->form_validation->set_rules('guarantor1', 'Guarantor One', 'required|xss_clean');
-  $this->form_validation->set_rules('guarantor2', 'Guarantor Two', 'required|xss_clean');
-  //$update_id = $this->input->post('update_id', TRUE);
-  if ($this->form_validation->run() == FALSE)
-  {   
-    $this->create();         
-  }
-  else
-  {       
-   $data =  $this->get_data_from_post();
-    if ($data['loan_type'] ==3) {$data['rates']=15;} else {$data['rates']=20;}
-	$data['instalments']=($data['rates'] + $data['rates'] / ( (1+ $data['rates']) ^  $data['months'] -1)) * $data['loan_amount'] ;
-	$data['loan_payable']= $data['instalments'] * $months;
-	$data['status']= "PENDING"; 
-	$data['user_id']=1;
-	$data['is_paid']=0;
-	$data['is_risky']=0;
-   
-   // if(is_numeric($update_id)){
-   //   $this->_update($update_id, $data);
-   //   $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">County details updated successfully!</div>');
-     
-   // } else {
-     $this->_insert($data);
-     $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Your loan request has been added successfully!</div>');
-   //}
-   
-                   //$this->session->set_flashdata('success', 'County added successfully.');
-   redirect('loans/create');
- }
-}
+	function submit (){
+	  
+	  $this->load->library('form_validation');
+	  $this->form_validation->set_rules('loan_amount', 'Loan Amount', 'required|xss_clean');
+	  $this->form_validation->set_rules('loan_purpose', 'Loan Purpose', 'required|xss_clean');
+	  $this->form_validation->set_rules('loan_type', 'Loan Type', 'required|xss_clean');
+	  $this->form_validation->set_rules('months', 'Months', 'required|xss_clean');
+	  $this->form_validation->set_rules('month_income', 'Monthly Income ', 'required|xss_clean');
+	  $this->form_validation->set_rules('guarantor1', 'Guarantor One', 'required|xss_clean');
+	  $this->form_validation->set_rules('guarantor2', 'Guarantor Two', 'required|xss_clean');
+	  //$update_id = $this->input->post('update_id', TRUE);
+	  if ($this->form_validation->run() == FALSE)
+	  {   
+	    $this->create();         
+	  }
+	  else
+	  {       
+	   $data =  $this->get_data_from_post();
+	    if ($data['loan_type'] ==3) {$data['rates']=15;} else {$data['rates']=20;}
+		$data['instalments']=($data['rates'] + $data['rates'] / ( (1+ $data['rates']) ^  $data['months'] -1)) * $data['loan_amount'] ;
+		$data['loan_payable']= $data['instalments'] * $data['months'];
+		$data['status']= "PENDING"; 
+		$data['user_id']=$this->session->userdata('user_id');
+		$data['is_paid']=0;
+		$data['is_risky']=0;
+	   	
+	   	
+	   // if(is_numeric($update_id)){
+	   //   $this->_update($update_id, $data);
+	   //   $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">County details updated successfully!</div>');
+	     
+	   // } else {
+	     $this->_insert($data);
+	     $id = mysql_insert_id();
+	     $notification = array(
+	     					'loan' => $id,
+	   						'guarantor1'=> $this->input->post('guarantor1'),
+							'guarantor2'=> $this->input->post('guarantor2'),
+							'amount'=> $this->input->post('loan_amount')
+	   						);
+	     $this->load->module('notifications');
+	     $notify = $this->notifications->send_notification($notification);
+	     $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Your loan request has been added successfully!</div>');
+	   //}
+	   
+	                   //$this->session->set_flashdata('success', 'County added successfully.');
+	   redirect('loans/view_loans/'.$this->session->userdata('user_id'));
+	 }
+	}
+
+	function dataTable_loans($loans)
+	{
+		$loans_data = '';
+		
+		$count = 1;
+		if ($loans) {
+			foreach ($loans as $key => $value) {
+				$loans_data .= '<tr>
+									<td>'.$count.'</td>
+									<td>'.$value['user_id'].'</td>
+									<td>'.$value['loan_amount'].'</td>
+									<td>'.$value['loan_purpose'].'</td>
+									<td>'.$value['guarantor1'].'</td>
+									<td>'.$value['guarantor2'].'</td>
+									<td>'.$value['is_paid'].'</td>
+									<td>'.$value['status'].'</td>
+									<td><a href="'.base_url().'loans/loan_preview/'.$value['loan_id'].'"><button class="btn btn-primary">Preview Loan</button></a></td>
+								</tr>';
+				$count++;
+			}
+		} else {
+			$loans_data = '<tr>
+								<td colspan="8">No Loan Data Found Yet</td>
+							</tr>';
+		}
+		return $loans_data;
+	}
+
+	function application_repayment_periods()
+	{
+		$repayments = array();
+      	$periods = $this->m_loans->loan_repayment_months();
+	  	foreach($periods as $row ){
+	  		$repayments[$row->loan_repayment_period_id] = $row->months;
+	  	}
+	  	return $repayments;
+	}
+
+	function confirm_guarantor($id){
+		$this->load->module('member');
+		$memeber = $this->member->get_active_memeber($id)->result_array();
+		echo json_encode($memeber);
+	}
+
+	function loan_preview($loan_id)
+	{
+
+	}
+
 	function get($order_by){
 		$this->load->model('m_loans');
 		$query = $this->m_loans->get($order_by);

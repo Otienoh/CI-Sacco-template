@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 <!DOCTYPE html>
-<!-- Template Name: Clip-One - Responsive Admin Template build with Twitter Bootstrap 3.x Version: 1.4 Author: ClipTheme -->
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
 <!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
 <!--[if !IE]><!-->
@@ -36,6 +35,9 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/font-awesome/css/font-awesome-ie7.min.css">
     <![endif]-->
     <!-- end: MAIN CSS -->
+    <!-- start: PRE-LOADED JAVASCRIPTS -->
+    <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+    <!-- end: PRE-LOADED JAVASCRIPTS -->
     <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/fullcalendar/fullcalendar/fullcalendar.css">
     <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
@@ -126,11 +128,11 @@
               <ul class="sub-menu">
                 <li>
                   <a href="<?php echo base_url();?>loans/create">
-                    <span class="title"> Apply Low </span>
+                    <span class="title"> Apply Loan</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="<?php echo base_url();?>loans/view_loans/<?php echo $this->session->userdata('user_id');?>">
                     <span class="title"> View Loans </span>
                   </a>
                 </li>
@@ -171,8 +173,13 @@
               </a>
               <ul class="sub-menu">
                 <li>
-                  <a href="#">
+                  <a href="<?php echo base_url();?>loans/view_guarantors">
                     <span class="title">My Guarantors</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="<?php echo base_url();?>loans/guarantee_requests">
+                    <span class="title">Guarantee Requests</span>
                   </a>
                 </li>
               </ul>
@@ -299,7 +306,7 @@
     <script type="text/javascript" src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/1.10.2/jquery.min.js"></script>
     <![endif]-->
     <!--[if gte IE 9]><!-->
-    <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+    
     <!--<![endif]-->
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
