@@ -81,7 +81,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a href="#">
+                  <a href="<?php echo base_url();?>users/logout">
                     <i class="clip-exit"></i>
                     &nbsp;Log Out
                   </a>

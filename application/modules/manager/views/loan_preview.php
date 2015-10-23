@@ -9,10 +9,10 @@
             <div class="col-sm-3">
             <?php
               if($loan_details[0]['status']!=1){?>
-              <a href="<?php echo base_url();?>loans/clearance/<?php echo $loan_details[0]['loan_id'];?>/1"><button class="btn btn-success">Accept Loan</button></a>
+              <a href="<?php echo base_url();?>manager/loan_clearance/<?php echo $loan_details[0]['loan_id'];?>/1"><button class="btn btn-success">Accept Loan</button></a>
             <?php
               } if($loan_details[0]['status']!=2){?>
-              <a href="<?php echo base_url();?>loans/clearance/<?php echo $loan_details[0]['loan_id'];?>/2"><button class="btn btn-danger">Reject Loan</button></a>
+              <a href="<?php echo base_url();?>manager/loan_clearance/<?php echo $loan_details[0]['loan_id'];?>/2"><button class="btn btn-danger">Reject Loan</button></a>
               <?php
                 }
               ?>
@@ -96,8 +96,7 @@
                       }
                     ?>
                     <div>
-                      <label>Loan Status: <?php echo $loan_details[0]['status'];?></label>
-                      <label><span class="<?php echo $class;?>"><?php echo $text;?></span></label>
+                      <label>Loan Status: <span class="<?php echo $class;?>"><?php echo $text;?></span></label>
                     </div>
                   </div>
                 </div>
@@ -129,28 +128,28 @@
                         <h4>Guarantor One</h4>
                         <div>
                           <label>Guarantor`s Name: </label>
-                          <label><?php echo $guarantor1[0]['middle_name']." ".$guarantor1[0]['first_name']." ".$guarantor1[0]['last_name'];?></label>
+                          <label><?php echo $guarantor_affirmation[0]['middle_name']." ".$guarantor_affirmation[0]['first_name']." ".$guarantor_affirmation[0]['last_name'];?></label>
                         </div>
                         <div>
                           <label>Contact Information: </label>
-                          <label><?php echo $guarantor1[0]['mobile_number'];?></label>
+                          <label><?php echo $guarantor_affirmation[0]['mobile_number'];?></label>
                         </div>
                         <div>
                           <label>Savings Information: </label>
-                          <label><?php echo $guarantor1[0]['current_savings'];?></label>
+                          <label><?php echo $guarantor_affirmation[0]['current_savings'];?></label>
                         </div>
                         <h4>Guarantor Two</h4>
                         <div>
                           <label>Guarantor`s Name: </label>
-                          <label><?php echo $guarantor2[0]['middle_name']." ".$guarantor2[0]['first_name']." ".$guarantor2[0]['last_name'];?></label>
+                          <label><?php echo $guarantor_affirmation[1]['middle_name']." ".$guarantor_affirmation[1]['first_name']." ".$guarantor_affirmation[1]['last_name'];?></label>
                         </div>
                         <div>
                           <label>Contact Information: </label>
-                          <label><?php echo $guarantor2[0]['mobile_number'];?></label>
+                          <label><?php echo $guarantor_affirmation[1]['mobile_number'];?></label>
                         </div>
                         <div>
                           <label>Savings Information: </label>
-                          <label><?php echo $guarantor2[0]['current_savings'];?></label>
+                          <label><?php echo $guarantor_affirmation[1]['current_savings'];?></label>
                         </div>
                       </div>
                     </div>
@@ -158,7 +157,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="row">
                 <div class="col-sm-12">
                   <div class="panel panel-default">
@@ -183,14 +182,14 @@
                       <div class="flot-mini-container">
                         <div>
                           <label>Applicant`s Current Savings Amount: </label>
-                          <label><?php echo $savings[0]['savings'];?></label>
+                          <label><?php //echo $savings[0]['savings'];?></label>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
        
           <!-- end: PAGE CONTENT-->

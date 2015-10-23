@@ -64,5 +64,11 @@ class savings extends MY_Controller
 		$mydepo = $this->m_savings->add_savings($this->session->userdata('user_id'));
 		redirect('savings/mysavings');
 	}
+
+	function get_user_savings($id=NULL)
+	{
+		$user_savings = $this->m_savings->get_total_savings($id);
+		return $user_savings[0]['total_current_savings'];
+	}
 }
 ?>

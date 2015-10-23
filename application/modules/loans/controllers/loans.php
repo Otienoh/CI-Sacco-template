@@ -117,7 +117,9 @@ class Loans extends MY_Controller
 				$count++;
 			}
 		} else {
-			# code...
+			$briefed .= '<li class="messages-item"  id="br'.$count.'">
+								You do not have any guarantee requests pending.
+							</li>';
 		}
 		$requests = array(
 						'brief' => $briefed,
@@ -211,15 +213,17 @@ class Loans extends MY_Controller
 		$count = 1;
 		if ($loans) {
 			foreach ($loans as $key => $value) {
+				$loan_notifications = $this->get_loan_data($value['loan_id']);
+
 				$loans_data .= '<tr>
 									<td>'.$count.'</td>
 									<td>'.$value['user_id'].'</td>
 									<td>'.$value['loan_amount'].'</td>
 									<td>'.$value['loan_purpose'].'</td>
-									<td>'.$value['guarantor1'].'</td>
-									<td>'.$value['guarantor2'].'</td>
-									<td>'.$value['is_paid'].'</td>
+									<td>'.$loan_notifications['guarantor1'].'</td>
+									<td>'.$loan_notifications['guarantor2'].'</td>
 									<td>'.$value['status'].'</td>
+									<td>'.$value['is_paid'].'</td>
 									<td><a href="'.base_url().'loans/loan_preview/'.$value['loan_id'].'"><button class="btn btn-primary">Preview Loan</button></a></td>
 								</tr>';
 				$count++;

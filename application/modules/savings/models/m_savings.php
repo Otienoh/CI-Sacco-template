@@ -25,5 +25,15 @@ class m_savings extends MY_Model
 					'deposit' => $this->input->post('amount'));
 		$insert = $this->db->insert('savings', $data);
 	}
+
+	function get_total_savings($id)
+	{
+		$sql = "SELECT
+					SUM(`deposit`)-SUM(`withdrawal`) AS `total_current_savings`
+				FROM
+					`savings`
+				WHERE `user_id` = '$id'";
+		return $this->db->query($sql)->result_array();
+	}
 }
 ?>

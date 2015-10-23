@@ -13,6 +13,23 @@ class MY_Controller extends MX_Controller{
         $this->load->module('hash');
     }
 
+    function get_loan_data($loan_id)
+	{
+		$this->load->model('manager/m_manager');
+		$garant = array();
+		$loan_not = $this->m_manager->get_loan_notifications($loan_id)->result_array();
+		$count=1;
+		foreach ($loan_not as $key => $value) {
+				$garant[$count]=$value['guarantor_id'];
+				$count++;
+		}
+		$data = array(
+					'guarantor1'=> $garant[1],
+					'guarantor2'=> $garant[2]
+					);
+		return $data;
+	}
+
    	function send_email($email,$subject, $message)
 	{
 		$time=date('Y-m-d');

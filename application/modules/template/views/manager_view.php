@@ -135,10 +135,10 @@
                 <span class="selected"></span>
               </a>
               <ul class="sub-menu">
+                <li><a href="<?php echo base_url();?>manager/loans"><span class="title"> View Loans </span></a></li>
                 <li><a href="#"><span class="title"> Loan Requests </span></a></li>
                 <li><a href="#"><span class="title"> Loan Tracker </span></a></li>
                 <li><a href="#"><span class="title"> Loan Types </span></a></li>
-                <li><a href="#"><span class="title"> View Loans </span></a></li>
                 <li><a href="#"><span class="title"> Loan Journals </span></a></li>
                 <li><a href="#"><span class="title"> Loan Defaulters/Risk </span></a></li>
               </ul>
