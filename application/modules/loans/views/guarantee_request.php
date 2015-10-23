@@ -36,209 +36,12 @@
 							</div>
 						</form>
 					</li>
-					<li class="messages-item">
-						<span title="Mark as starred" class="messages-item-star"><i class="fa fa-star"></i></span>
-						<img alt="" src="assets/images/avatar-1.jpg" class="messages-item-avatar">
-						<span class="messages-item-from">Peter Clark</span>
-						<div class="messages-item-time">
-							<span class="text">10:23 PM</span>
-							<div class="messages-item-actions">
-								<a data-toggle="dropdown" title="Reply" href="#"><i class="fa fa-mail-reply"></i></a>
-								<div class="dropdown">
-									<a data-toggle="dropdown" title="Move to folder" href="#"><i class="fa fa-folder-open"></i></a>
-									<ul class="dropdown-menu pull-right">
-										<li>
-											<a href="#">
-												<i class="fa fa-pencil"></i>
-												Mark as Read
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-ban"></i>
-												Spam
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-trash-o"></i>
-												Delete
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="dropdown">
-									<a data-toggle="dropdown" title="Attach to tag" href="#"><i class="fa fa-tag"></i></a>
-									<ul class="dropdown-menu pull-right">
-										<li>
-											<a href="#"><i class="tag-icon red"></i>Important</a>
-										</li>
-										<li>
-											<a href="#"><i class="tag-icon teal"></i>Work</a>
-										</li>
-										<li>
-											<a href="#"><i class="tag-icon green"></i>Home</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<span class="messages-item-subject">Lorem ipsumdolor sit amet ...</span>
-						<span class="messages-item-preview">Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do antera ...</span>
-					</li>
-					<li class="messages-item active starred">
-						<span title="Remove star" class="messages-item-star"><i class="fa fa-star"></i></span>
-						<img alt="" src="assets/images/avatar-2.jpg" class="messages-item-avatar">
-						<span class="messages-item-from">Nicole Bell</span>
-						<div class="messages-item-time">
-							<span class="text">08:46 PM</span>
-							<div class="messages-item-actions">
-								<a data-toggle="dropdown" title="Reply" href="#"><i class="fa fa-mail-reply"></i></a>
-								<div class="dropdown">
-									<a data-toggle="dropdown" title="Move to folder" href="#"><i class="fa fa-folder-open"></i></a>
-									<ul class="dropdown-menu pull-right">
-										<li>
-											<a href="#">
-												<i class="fa fa-pencil"></i>
-												Mark as Read
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-ban"></i>
-												Spam
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-trash-o"></i>
-												Delete
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="dropdown">
-									<a data-toggle="dropdown" title="Attach to tag" href="#"><i class="fa fa-tag"></i></a>
-									<ul class="dropdown-menu pull-right">
-										<li>
-											<a href="#"><i class="tag-icon red"></i>Important</a>
-										</li>
-										<li>
-											<a href="#"><i class="tag-icon teal"></i>Work</a>
-										</li>
-										<li>
-											<a href="#"><i class="tag-icon green"></i>Home</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<span class="messages-item-subject">Duis autem vel eum iriure ...</span>
-						<span class="messages-item-preview">Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do antera ...</span>
-					</li>
-					<li class="messages-item">
-						<span title="Mark as starred" class="messages-item-star"><i class="fa fa-star"></i></span>
-						<span class="messages-item-attachment"><i class="fa fa-paperclip"></i></span>
-						<img alt="" src="assets/images/avatar-3.jpg" class="messages-item-avatar">
-						<span class="messages-item-from">Steven Thompson</span>
-						<div class="messages-item-time">
-							<span class="text">04:03 PM</span>
-							<div class="messages-item-actions">
-								<a data-toggle="dropdown" title="Reply" href="#"><i class="fa fa-mail-reply"></i></a>
-								<div class="dropdown">
-									<a data-toggle="dropdown" title="Move to folder" href="#"><i class="fa fa-folder-open"></i></a>
-									<ul class="dropdown-menu pull-right">
-										<li>
-											<a href="#">
-												<i class="fa fa-pencil"></i>
-												Mark as Read
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-ban"></i>
-												Spam
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-trash-o"></i>
-												Delete
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="dropdown">
-									<a data-toggle="dropdown" title="Attach to tag" href="#"><i class="fa fa-tag"></i></a>
-									<ul class="dropdown-menu pull-right">
-										<li>
-											<a href="#"><i class="tag-icon red"></i>Important</a>
-										</li>
-										<li>
-											<a href="#"><i class="tag-icon teal"></i>Work</a>
-										</li>
-										<li>
-											<a href="#"><i class="tag-icon green"></i>Home</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<span class="messages-item-subject">Lorem ipsumdolor sit amet ...</span>
-						<span class="messages-item-preview">Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do antera ...</span>
-					</li>
-					<li class="messages-item">
-						<span title="Mark as starred" class="messages-item-star"><i class="fa fa-star"></i></span>
-						<img alt="" src="assets/images/avatar-1.jpg" class="messages-item-avatar">
-						<span class="messages-item-from">Peter Clark</span>
-						<div class="messages-item-time">
-							<span class="text">11:16 AM</span>
-							<div class="messages-item-actions">
-								<a data-toggle="dropdown" title="Reply" href="#"><i class="fa fa-mail-reply"></i></a>
-								<div class="dropdown">
-									<a data-toggle="dropdown" title="Move to folder" href="#"><i class="fa fa-folder-open"></i></a>
-									<ul class="dropdown-menu pull-right">
-										<li>
-											<a href="#">
-												<i class="fa fa-pencil"></i>
-												Mark as Read
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-ban"></i>
-												Spam
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-trash-o"></i>
-												Delete
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="dropdown">
-									<a data-toggle="dropdown" title="Attach to tag" href="#"><i class="fa fa-tag"></i></a>
-									<ul class="dropdown-menu pull-right">
-										<li>
-											<a href="#"><i class="tag-icon red"></i>Important</a>
-										</li>
-										<li>
-											<a href="#"><i class="tag-icon teal"></i>Work</a>
-										</li>
-										<li>
-											<a href="#"><i class="tag-icon green"></i>Home</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<span class="messages-item-subject">Duis autem vel eum iriure ...</span>
-						<span class="messages-item-preview">Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do antera ...</span>
-					</li>
+					<?php echo $guarantee_request['brief'];?>
+					
 				</ul>
-				<div class="messages-content">
+				<?php echo $guarantee_request['detailed'];?>
+				
+				<!-- <div class="messages-content">
 					<div class="message-header">
 						<div class="message-time">
 							11 NOV 2014, 11:46 PM
@@ -246,9 +49,7 @@
 						<div class="message-from">
 							Nicole Bell &lt;nicole@example.com&gt;
 						</div>
-						<div class="message-to">
-							To: Peter Clark
-						</div>
+						
 						<div class="message-subject">
 							New frontend layout
 						</div>
@@ -272,9 +73,21 @@
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut blandit ligula. In accumsan mauris at augue feugiat consequat. Aenean consequat sem sed velit sagittis dignissim. Phasellus quis convallis est. Praesent porttitor mauris nec lectus mollis, eget sodales libero venenatis. Cras eget vestibulum turpis. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam turpis velit, tempor vitae libero ac, fermentum laoreet dolor.
 						</p>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- end: INBOX PANEL -->
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.messages-content').hide();
+		$('li').click(function(){
+			id = $(this).attr('id');
+			console.log(id);
+			$('.messages-content').hide();
+			$('#det-'+id).show();
+		});
+
+	});
+</script>

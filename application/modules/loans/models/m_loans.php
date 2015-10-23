@@ -111,4 +111,29 @@ function get_loan_details($loan_id)
 	return $query;
 }
 
+function guarantee_requests($user_id)
+{
+	$guarantor_details = $this->get_user_member_data($user_id)->result_array();
+	$member_id = $guarantor_details[0]['member_id'];
+	
+	$sql = "SELECT *, YEAR(`l`.`date_of_application`) AS `year_of_application`, MONTH(`l`.`date_of_application`) AS `month_of_application`, DAY(`l`.`date_of_application`) AS `day_of_application`, TIME(`l`.`date_of_application`) AS `time_of_application` FROM `loan_notifications` `ln`
+			JOIN `loans` `l` ON `ln`.`loan_id` = `l`.`loan_id`
+			JOIN `members` `mb` ON `ln`.`applicant_id` = `mb`.`member_id`
+			WHERE `ln`.`guarantor_id` = '$member_id' AND `ln`.`status`='0'";
+
+	return $this->_custom_query($sql);
+}
+
+function guarantor_response($response,$loan_id,$guarantor_id)
+{
+	$sql = "UPDATE 
+				`loan_notifications`
+			SET 
+				`status`='$response'
+			WHERE
+				`loan_id`='$loan_id' AND `guarantor_id` = '$guarantor_id'";
+			
+	return $sql;
+}
+
 }
