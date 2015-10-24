@@ -31,13 +31,14 @@ class m_savings extends MY_Model
 		$insert = $this->db->insert('savings', $data);
 	}
 
-	function get_savings_details($user_id)
+	function get_total_savings($id)
 	{
 		$sql = "SELECT
-					SUM(`deposit`)-SUM(`withdrawal`) AS `savings`
-				FROM `savings`
-				WHERE `user_id` = '$user_id'";
-		return $sql;
+					SUM(`deposit`)-SUM(`withdrawal`) AS `total_current_savings`
+				FROM
+					`savings`
+				WHERE `user_id` = '$id'";
+		return $this->db->query($sql)->result_array();
 	}
 }
 ?>

@@ -70,9 +70,10 @@ class savings extends MY_Controller
 		redirect('savings/mysavings');
 	}
 
-	function member_savings($user_id){
-		$member_savings = $this->_custom_query($this->m_savings->get_savings_details($user_id))->result_array();
-		return $member_savings;
+	function get_user_savings($id=NULL)
+	{
+		$user_savings = $this->m_savings->get_total_savings($id);
+		return $user_savings[0]['total_current_savings'];
 	}
 }
 ?>

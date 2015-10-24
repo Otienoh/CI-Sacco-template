@@ -9,6 +9,7 @@ class Member extends MY_Controller
 	{
 		parent::__construct();
 		$this->login_reroute(3);
+		$this->load->model('m_member');
 	}
 
 	public function index()
@@ -20,6 +21,11 @@ class Member extends MY_Controller
 		$data['module'] = "dashboard";
 		$data['view_file'] = "home";
 		echo Modules::run('template/member', $data);	
+	}
+
+	function get_active_memeber($id)
+	{
+		return $this->m_member->get_where($id);
 	}
 }
 ?>

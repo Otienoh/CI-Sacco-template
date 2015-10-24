@@ -31,5 +31,17 @@ class MY_Model extends CI_Model{
 
         return $result[0]['user_id'];
     }
+
+    public function get_member_user_data($member_id)
+    {
+        $this->db->where('member_id',$member_id);
+        $this->db->get('members');
+    }
+
+    public function get_user_member_data($user_id)
+    {
+        $this->db->where('user_id',$user_id);
+        return $this->db->get('members');
+    }
     
 }

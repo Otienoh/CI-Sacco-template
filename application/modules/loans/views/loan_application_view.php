@@ -100,7 +100,7 @@
                               <option value="Development">Development Loan</option>
                               <option value="Emergency">Emergency Loan</option>
                             </select> -->
-                      <?php echo form_dropdown('loan_type',$array , $loan_type, 'id="loan_type" class="form-control"');  ?>
+                          <?php echo form_dropdown('loan_type',$array , $loan_type, 'id="loan_type" class="form-control"');  ?>
                           </div>
                         </div>
                         <div class="form-group">
@@ -108,8 +108,7 @@
                             Repayment Months <span class="symbol required"></span>
                           </label>
                           <div class="col-sm-7">
-                           <?php echo form_input(['name' => 'months', 'id' => 'months',  'value' => $months ,'class' => 'form-control', 'placeholder' => 'Enter Repayment Period in Months']); ?>
-                            <!-- <input type="text" class="form-control" id="months" name="months" placeholder="Enter Repayment Period in Months "> -->
+                            <?php echo form_dropdown('months',$repayment_periods , $months, 'id="months" class="form-control"');  ?>
                           </div>
                         </div>
                         <div class="form-group">
@@ -136,8 +135,14 @@
                             Guarantor One <span class="symbol required"></span>
                           </label>
                           <div class="col-sm-7">
-                              <?php echo form_input(['name' => 'guarantor1', 'id' => 'guarantor1',  'value' => $guarantor1 ,'class' => 'form-control', 'placeholder' => 'Enter Member ID Guarantor']); ?>
-                            <!-- <input type="text" class="form-control" id="guarantor1" name="guarantor1" placeholder="Enter Guarantor One "> -->
+                              <?php echo form_input(['name' => 'guarantor1', 'id' => 'guarantor1',  'value' => $guarantor1 ,'class' => 'form-control', 'placeholder' => 'Enter Member ID Guarantor', 'required' => 'true']); ?>
+                              <div class="alert alert-danger" id="error1">
+                                <button data-dismiss="alert" class="close">
+                                  &times;
+                                </button>
+                                <i class="fa fa-times-circle"></i>
+                                <strong>Error!</strong> Guarantor Entered above does not exist.
+                              </div><!-- <input type="text" class="form-control" id="guarantor1" name="guarantor1" placeholder="Enter Guarantor One "> -->
                           </div>
                         </div>
                         <div class="form-group">
@@ -145,8 +150,21 @@
                             Guarantor Two <span class="symbol required"></span>
                           </label>
                           <div class="col-sm-7">
-                             <?php echo form_input(['name' => 'guarantor2', 'id' => 'guarantor2',  'value' => $guarantor2 ,'class' => 'form-control', 'placeholder' => 'Enter Member ID Guarantor']); ?>
-                            <!-- <input type="text" class="form-control" id="guarantor2" name="guarantor2" placeholder="Enter Guarantor Two "> -->
+                             <?php echo form_input(['name' => 'guarantor2', 'id' => 'guarantor2',  'value' => $guarantor2 ,'class' => 'form-control', 'placeholder' => 'Enter Member ID Guarantor', 'required' => 'true']); ?>
+                            <div class="alert alert-danger" id="error2">
+                                <button data-dismiss="alert" class="close">
+                                  &times;
+                                </button>
+                                <i class="fa fa-times-circle"></i>
+                                <strong>Error!</strong> Guarantor Entered above does not exist.
+                              </div>
+                              <div class="alert alert-danger" id="error3">
+                                <button data-dismiss="alert" class="close">
+                                  &times;
+                                </button>
+                                <i class="fa fa-times-circle"></i>
+                                <strong>Error!</strong> You have entered similar Guarantor Numbers.
+                              </div><!-- <input type="text" class="form-control" id="guarantor2" name="guarantor2" placeholder="Enter Guarantor Two "> -->
                           </div>
                         </div>
                         <div class="form-group">
@@ -156,7 +174,7 @@
                             </button>
                           </div>
                           <div class="col-sm-2 col-sm-offset-3">
-                            <button class="btn btn-blue next-step btn-block">
+                            <button class="btn btn-blue next-step btn-block" id="proceed2">
                               Next <i class="fa fa-arrow-circle-right"></i>
                             </button>
                           </div>
@@ -236,3 +254,46 @@
               <!-- end: FORM WIZARD PANEL -->
             </div>
           </div>
+          <script type="text/javascript">
+          $(document).ready(function(){
+            $('#error1').hide();
+            $('#error2').hide();
+            $('#error3').hide();
+
+            $('#guarantor1').keyup(function(){
+              id=$(this).val();
+              if (id) {
+                $.get('<?php echo base_url();?>loans/confirm_guarantor/'+id, function(data){
+                obj = jQuery.parseJSON(data);
+                if (obj[0]) {
+                  $('#error1').hide();
+                }else {
+                  $('#error1').show();
+                }
+              });
+              }             
+            });
+            $('#guarantor2').keyup(function(){
+              id2=$(this).val();
+              if (id2) {
+                if (id2==id) {
+                  $('#error3').show();
+                  $('#proceed2').attr('disabled','true');
+                }else{
+                  $('#error3').hide();
+                  $('#proceed2').removeAttr('disabled');
+                }
+
+                $.get('<?php echo base_url();?>loans/confirm_guarantor/'+id2, function(data){
+                obj = jQuery.parseJSON(data);
+                if (obj[0]) {
+                  $('#error2').hide();
+                }else {
+                  $('#error2').show();
+                }
+              });
+              }
+            });
+
+          });
+          </script>
