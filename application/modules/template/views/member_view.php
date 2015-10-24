@@ -58,7 +58,7 @@
           <!-- end: RESPONSIVE MENU TOGGLER -->
           <!-- start: LOGO -->
           <a class="navbar-brand" href="#">
-            ADI <i class="clip-network"></i> Sacco
+           Superior <i class="clip-network"></i> Sacco
           </a>
           <!-- end: LOGO -->
         </div>
