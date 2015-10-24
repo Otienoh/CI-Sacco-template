@@ -100,7 +100,7 @@ class MY_Controller extends MX_Controller{
 	function logout()
 	{
 		$this->session->sess_destroy();
-		redirect(base_url().'users/login');
+		redirect(base_url().'users/homepage');
 	}
 
 	public static function truncateStringWords($str, $maxlen=32)

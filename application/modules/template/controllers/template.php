@@ -24,6 +24,10 @@ class Template extends MY_Controller {
         $this->load->view('admin_view',$data);
     }
 
+   function homepage(){
+       // Modules::run('secure_tings/ni_admin');
+        $this->load->view('homepage');
+    }
 
 	
 	function redirect($type)
