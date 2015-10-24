@@ -24,10 +24,35 @@ class m_savings extends MY_Model
 
 	function add_savings($user_id)
 	{
+		$client = $this->input->post('client');
+		if ($this->input->post('code_identifier_moblie')) {
+			$code = $this->input->post('code_identifier_moblie');
+		} else {
+			$code = $this->input->post('code_identifier_bank');
+		}
+		
 		$data = array(
 					'user_id' => $user_id,
-					'client' => $this->input->post('client'),
-					'deposit' => $this->input->post('amount'));
+					'client' => $client,
+					'deposit' => $this->input->post('amount'),
+					'description' => 'Code: '.$code.' for a deposit transaction made through: '.$client);
+		$insert = $this->db->insert('savings', $data);
+	}
+
+	function withdrawal($user_id)
+	{
+		$client = $this->input->post('client');
+		if ($this->input->post('code_identifier_moblie')) {
+			$code = $this->input->post('code_identifier_moblie');
+		} else {
+			$code = $this->input->post('code_identifier_bank');
+		}
+		
+		$data = array(
+					'user_id' => $user_id,
+					'client' => $client,
+					'withdrawal' => $this->input->post('amount'),
+					'description' => 'Account: '.$code.' request for a withdrawal transaction made through: '.$client);
 		$insert = $this->db->insert('savings', $data);
 	}
 
@@ -39,6 +64,12 @@ class m_savings extends MY_Model
 					`savings`
 				WHERE `user_id` = '$id'";
 		return $this->db->query($sql)->result_array();
+	}
+
+	function get_savings_sources($parent_id)
+	{
+		$this->db->where('parent_id',$parent_id);
+		return $this->db->get('savings_methods');
 	}
 }
 ?>

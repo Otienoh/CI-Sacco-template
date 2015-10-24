@@ -54,21 +54,28 @@
 						</div>
 					</div>
 				</div>
+
+				<div  class="alert alert-info" style="padding-bottom:2em;">
+					<strong>
+						<label>Your Outstanding balance is : </label>
+						<?php echo $savings_data['savings']; ?>
+					</strong>
+				</div>
 				<div class="table-responsive">
 					<table class="table table-striped table-hover" id="sample-table-2">
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Client</th>
+								<th>Source</th>
 								<th>Deposits</th>
 								<th>Withdrawals</th>
 								<th>Transaction Date</th>
 							</tr>
 						</thead>
 						<tbody>
-							<?php echo $savings_data; ?>
-							
+							<?php echo $savings_data['tabular']; ?>
 						</tbody>
+
 					</table>
 				</div>
 			</div>

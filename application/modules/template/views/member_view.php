@@ -160,7 +160,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="<?php echo base_url();?>savings/withdraw">
                     <span class="title">Withdraw Savings</span>
                   </a>
                 </li>
@@ -172,36 +172,37 @@
                 <span class="selected"></span>
               </a>
               <ul class="sub-menu">
+              <li>
+                  <a href="<?php echo base_url();?>loans/guarantee_requests">
+                    <span class="title">Guarantee Requests</span>
+                  </a>
+                </li>
                 <li>
                   <a href="<?php echo base_url();?>loans/view_guarantors">
                     <span class="title">My Guarantors</span>
                   </a>
                 </li>
-                <li>
-                  <a href="<?php echo base_url();?>loans/guarantee_requests">
-                    <span class="title">Guarantee Requests</span>
-                  </a>
-                </li>
+                
               </ul>
             </li>
-            <li>
+            <!-- <li>
               <a href="#"><i class="clip-data"></i>
                 <span class="title">ACCOUNTING</span>
                 <span class="selected"></span>
               </a>
-            </li>
+            </li> -->
             <li>
               <a href="#"><i class="clip-file"></i>
                 <span class="title">REPORTS</span>
                 <span class="selected"></span>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="#"><i class="clip-notification"></i>
                 <span class="title">INFO</span>
                 <span class="selected"></span>
               </a>
-            </li>
+            </li> -->
             <li>
               <a href="#">
                 
