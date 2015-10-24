@@ -30,6 +30,20 @@ class MY_Controller extends MX_Controller{
 		return $data;
 	}
 
+	function status_3level($status)
+	{
+		$tag = '';
+		if ($status==0) {
+			$tag = '<span><i class="label label-warning">PENDING</i></span>';
+		} else if ($status==1) {
+			$tag = '<span><i class="label label-success">APPROVED</i></span>';
+		}
+		else if ($status==2) {
+			$tag = '<span><i class="label label-danger">DECLINED</i></span>';
+		}
+		return $tag;
+	}
+
    	function send_email($email,$subject, $message)
 	{
 		$time=date('Y-m-d');

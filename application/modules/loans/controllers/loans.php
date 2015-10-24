@@ -148,8 +148,6 @@ class Loans extends MY_Controller
 		$data['loan_type']=$this->input->post('loan_type', TRUE);
 		$data['months']=$this->input->post('months', TRUE); 
 		$data['month_income']=$this->input->post('month_income', TRUE);
-		$data['guarantor1']=$this->input->post('guarantor1', TRUE);
-		$data['guarantor2']=$this->input->post('guarantor2', TRUE);
 		
 		return $data;
 
@@ -177,7 +175,7 @@ class Loans extends MY_Controller
 	    if ($data['loan_type'] ==3) {$data['rates']=15;} else {$data['rates']=20;}
 		$data['instalments']=($data['rates'] + $data['rates'] / ( (1+ $data['rates']) ^  $data['months'] -1)) * $data['loan_amount'] ;
 		$data['loan_payable']= $data['instalments'] * $data['months'];
-		$data['status']= "PENDING"; 
+		$data['status']= 0; 
 		$data['user_id']=$this->session->userdata('user_id');
 		$data['is_paid']=0;
 		$data['is_risky']=0;
@@ -192,8 +190,8 @@ class Loans extends MY_Controller
 	     $id = mysql_insert_id();
 	     $notification = array(
 	     					'loan' => $id,
-	   						'guarantor1'=> $this->input->post('guarantor1'),
-							'guarantor2'=> $this->input->post('guarantor2'),
+	   						'guarantor1'=> $this->input->post('guarantor1', TRUE),
+							'guarantor2'=> $this->input->post('guarantor2', TRUE),
 							'amount'=> $this->input->post('loan_amount')
 	   						);
 	     $this->load->module('notifications');
@@ -208,22 +206,26 @@ class Loans extends MY_Controller
 
 	function dataTable_loans($loans)
 	{
+		$this->load->model('m_loans');
 		$loans_data = '';
 		
 		$count = 1;
 		if ($loans) {
 			foreach ($loans as $key => $value) {
 				$loan_notifications = $this->get_loan_data($value['loan_id']);
-
+				$guarantor1 = $this->m_loans->get_member_data($loan_notifications['guarantor1'])->result_array();
+				$guarantor2 = $this->m_loans->get_member_data($loan_notifications['guarantor2'])->result_array();
+				$applicant = $this->m_loans->get_user_member_data($value['user_id'])->result_array();
+				// echo "<pre>";print_r($guarantor2[0]['last_name']);die();
 				$loans_data .= '<tr>
 									<td>'.$count.'</td>
-									<td>'.$value['user_id'].'</td>
+									<td>'.$applicant[0]['last_name'].' '.$applicant[0]['first_name'].'</td>
 									<td>'.$value['loan_amount'].'</td>
 									<td>'.$value['loan_purpose'].'</td>
-									<td>'.$loan_notifications['guarantor1'].'</td>
-									<td>'.$loan_notifications['guarantor2'].'</td>
-									<td>'.$value['status'].'</td>
-									<td>'.$value['is_paid'].'</td>
+									<td>'.$guarantor1[0]['last_name'].' '.$guarantor1[0]['first_name'].'</td>
+									<td>'.$guarantor2[0]['last_name'].' '.$guarantor2[0]['first_name'].'</td>
+									<td>'.$this->status_3level($value['status']).'</td>
+									<td>'.$this->status_3level($value['is_paid']).'</td>
 									<td><a href="'.base_url().'loans/loan_preview/'.$value['loan_id'].'"><button class="btn btn-primary">Preview Loan</button></a></td>
 								</tr>';
 				$count++;
@@ -250,11 +252,6 @@ class Loans extends MY_Controller
 		$this->load->module('member');
 		$memeber = $this->member->get_active_memeber($id)->result_array();
 		echo json_encode($memeber);
-	}
-
-	function loan_preview($loan_id)
-	{
-
 	}
 
 	function get($order_by){
@@ -330,7 +327,7 @@ class Loans extends MY_Controller
 		$data['module'] = "manager";
 		$data['view_file'] = "loan_preview";
 		// echo "<pre>";print_r($data);die();
-		echo Modules::run('template/manager', $data);
+		echo Modules::run('template/member', $data);
 	}
 
 }

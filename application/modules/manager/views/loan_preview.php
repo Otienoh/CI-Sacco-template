@@ -139,6 +139,10 @@
                           <label>Savings Information: </label>
                           <label><?php echo $guarantor_affirmation[0]['current_savings'];?></label>
                         </div>
+                        <div>
+                          <label>Guarantor Status: </label>
+                          <label><?php echo $guarantor_affirmation[0]['status'];?></label>
+                        </div>
                         <h4>Guarantor Two</h4>
                         <div>
                           <label>Guarantor`s Name: </label>
@@ -151,6 +155,10 @@
                         <div>
                           <label>Savings Information: </label>
                           <label><?php echo $guarantor_affirmation[1]['current_savings'];?></label>
+                        </div>
+                        <div>
+                          <label>Guarantor Status: </label>
+                          <label><?php echo $guarantor_affirmation[1]['status'];?></label>
                         </div>
                       </div>
                     </div>

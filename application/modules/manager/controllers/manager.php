@@ -47,16 +47,19 @@ class Manager extends MY_Controller
 		if ($loans) {
 			foreach ($loans as $key => $value) {
 				$loan_notifications = $this->get_loan_data($value['loan_id']);
-
+				$guarantor1 = $this->m_manager->get_member_data($loan_notifications['guarantor1'])->result_array();
+				$guarantor2 = $this->m_manager->get_member_data($loan_notifications['guarantor2'])->result_array();
+				$applicant = $this->m_manager->get_user_member_data($value['user_id'])->result_array();
+				// echo "<pre>";print_r($guarantor2[0]['last_name']);die();
 				$loans_data .= '<tr>
 									<td>'.$count.'</td>
-									<td>'.$value['user_id'].'</td>
+									<td>'.$applicant[0]['last_name'].' '.$applicant[0]['first_name'].'</td>
 									<td>'.$value['loan_amount'].'</td>
 									<td>'.$value['loan_purpose'].'</td>
-									<td>'.$loan_notifications['guarantor1'].'</td>
-									<td>'.$loan_notifications['guarantor2'].'</td>
-									<td>'.$value['status'].'</td>
-									<td>'.$value['is_paid'].'</td>
+									<td>'.$guarantor2[0]['last_name'].' '.$guarantor2[0]['first_name'].'</td>
+									<td>'.$guarantor2[0]['last_name'].' '.$guarantor2[0]['first_name'].'</td>
+									<td>'.$this->status_3level($value['status']).'</td>
+									<td>'.$this->status_3level($value['is_paid']).'</td>
 									<td><a href="'.base_url().'manager/loan_preview/'.$value['loan_id'].'"><button class="btn btn-primary">Preview Loan</button></a></td>
 								</tr>';
 				$count++;
@@ -95,7 +98,7 @@ class Manager extends MY_Controller
 								'middle_name'=> $value['middle_name'],
 								'last_name'=> $value['last_name'],
 								'mobile_number'=> $value['mobile_number'],
-								'status' => $this->loan_status($value['status']),
+								'status' => $this->status_3level($value['status']),
 								'current_savings'=> $this->savings->get_user_savings($value['user_id'])
 								);
 			$count++;
@@ -103,18 +106,7 @@ class Manager extends MY_Controller
 		return $data;
 	}
 
-	function loan_status($status)
-	{
-		if ($status) {
-			# code...
-		} else if ($status) {
-			# code...
-		}
-		else if ($status) {
-			# code...
-		}
-		
-	}
+	
 
 	function loan_clearance($loan_id, $status)
 	{

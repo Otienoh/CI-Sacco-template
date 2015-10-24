@@ -135,7 +135,7 @@
                             Guarantor One <span class="symbol required"></span>
                           </label>
                           <div class="col-sm-7">
-                              <?php echo form_input(['name' => 'guarantor1', 'id' => 'guarantor1',  'value' => $guarantor1 ,'class' => 'form-control', 'placeholder' => 'Enter Member ID Guarantor', 'required' => 'true']); ?>
+                              <?php echo form_input(['name' => 'guarantor1', 'id' => 'guarantor1' ,'class' => 'form-control', 'placeholder' => 'Enter Member ID Guarantor', 'required' => 'true']); ?>
                               <div class="alert alert-danger" id="error1">
                                 <button data-dismiss="alert" class="close">
                                   &times;
@@ -150,7 +150,7 @@
                             Guarantor Two <span class="symbol required"></span>
                           </label>
                           <div class="col-sm-7">
-                             <?php echo form_input(['name' => 'guarantor2', 'id' => 'guarantor2',  'value' => $guarantor2 ,'class' => 'form-control', 'placeholder' => 'Enter Member ID Guarantor', 'required' => 'true']); ?>
+                             <?php echo form_input(['name' => 'guarantor2', 'id' => 'guarantor2' ,'class' => 'form-control', 'placeholder' => 'Enter Member ID Guarantor', 'required' => 'true']); ?>
                             <div class="alert alert-danger" id="error2">
                                 <button data-dismiss="alert" class="close">
                                   &times;
