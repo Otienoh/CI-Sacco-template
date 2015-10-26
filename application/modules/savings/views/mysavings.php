@@ -3,7 +3,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<i class="fa fa-external-link-square"></i>
-				Export Data Table
+				Savings Data
 				<div class="panel-tools">
 					<a class="btn btn-xs btn-link panel-collapse collapses" href="#"> </a>
 					<a class="btn btn-xs btn-link panel-config" href="#panel-config" data-toggle="modal"> <i class="fa fa-wrench"></i> </a>
@@ -57,8 +57,8 @@
 
 				<div  class="alert alert-info" style="padding-bottom:2em;">
 					<strong>
-						<label>Your Outstanding balance is : </label>
-						<?php echo $savings_data['savings']; ?>
+						<label>Your Outstanding balance is Ksh. : </label>
+						<?php echo $savings_data['savings'];?> 
 					</strong>
 				</div>
 				<div class="table-responsive">

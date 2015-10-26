@@ -20,10 +20,11 @@ class savings extends MY_Controller
 	function mysavings()
 	{
 		$data['savings_data'] = $this->get_mysavings();
+		// echo "<pre>";print_r($data['savings_data']);die();
 		$data['section'] = "ADI Sacco";
 	    $data['subtitle'] = "Members";
 	  	$data['page_title'] = "Savings";
-	  	$data['subpage_title'] = "overview & stats";
+	  	$data['subpage_title'] = "Transactions";
 		$data['module'] = "savings";
 		$data['view_file'] = "mysavings";
 		echo Modules::run('template/member', $data);
@@ -49,6 +50,7 @@ class savings extends MY_Controller
 			// echo "<pre>";print_r($savings_data);die();
 		} else {
 			$savings_data['tabular'] = '<tr><td colspan="5"><center><p>You have not saved any money yet!</p></center></td></tr>';
+			$savings_data['savings'] = $this->get_user_savings($this->session->userdata('user_id'));
 		}
 		
 		
@@ -100,7 +102,12 @@ class savings extends MY_Controller
 	function get_user_savings($id=NULL)
 	{
 		$user_savings = $this->m_savings->get_total_savings($id);
-		return $user_savings[0]['total_current_savings'];
+		if ($user_savings) {
+			$savings = $user_savings[0]['total_current_savings'];
+		} else {
+			$savings = '0.00';
+		}
+		return $savings;
 	}
 
 	function get_parent_sources()

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/perfect-scrollbar/src/perfect-scrollbar.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/css/theme_light.css" type="text/css" id="skin_color">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/css/print.css" type="text/css" media="print"/>
+    <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
     <!--[if IE 7]>
     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome-ie7.min.css">
     <![endif]-->
@@ -68,7 +69,7 @@
     <script type="text/javascript" src="assets/plugins/jQuery-lib/1.10.2/jquery.min.js"></script>
     <![endif]-->
     <!--[if gte IE 9]><!-->
-    <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+    
     <!--<![endif]-->
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -86,27 +87,7 @@
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/js/login.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-    <script>
-      jQuery(document).ready(function() {
-        Main.init();
-        Login.init();
-        //Added function for the email use alert.
-          $('#email_alert').hide();
-          $('#email_registration').focusout(function(){
-              em = $(this).val();
-              $.get('<?php echo base_url();?>users/check_existing_email/'+em, function (data) {
-                  obj = jQuery.parseJSON(data);
-                  if (jQuery.isEmptyObject(obj)) {
-                      $('#email_alert').hide();
-                      $('#registration_button').removeAttr('disabled');
-                  } else{
-                      $('#email_alert').show();
-                      $('#registration_button').attr('disabled', 'true');
-                  }
-              });
-          }); 
-      });
-    </script>
+  
   </body>
   
 

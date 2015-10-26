@@ -120,21 +120,21 @@
 						</p>
 						<div class="form-group">
 							<span class="input-icon">
-								<input type="email" class="form-control" name="email" id="email_registration" placeholder="Email">
+								<input type="email" class="form-control" name="email_registration" id="email_registration" placeholder="Email">
 								<i class="fa fa-envelope"></i>
-								<div class="alert alert-danger" id="email_alert">
-									<i class="fa fa-times-circle"></i> Email address already in use.
-								</div>
 							</span>
+						</div>
+						<div class="alert alert-danger" id="email_alert">
+							<i class="fa fa-times-circle"></i> Email address already in use.
 						</div>
 						<div class="form-group">
 							<span class="input-icon">
-								<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+								<input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
 								<i class="fa fa-lock"></i> </span>
 						</div>
 						<div class="form-group">
 							<span class="input-icon">
-								<input type="password" class="form-control" name="password_again" placeholder="Password Again">
+								<input type="password" class="form-control" id="password_again" name="password_again" placeholder="Password Again">
 								<i class="fa fa-lock"></i> </span>
 						</div>
 						<div class="form-group">
@@ -163,4 +163,25 @@
 			</div>
 			<!-- end: COPYRIGHT -->
 		</div>
+		<script type="text/javascript">
+		$(document).ready(function() {
+	        Main.init();
+	        Login.init();
+	        //Added function for the email use alert.
+	          $('#email_alert').hide();
+	          $('#email_registration').focusout(function(){
+	              em = $(this).val();
+	              $.get('<?php echo base_url();?>users/check_existing_email/'+em, function (data) {
+	                  obj = $.parseJSON(data);
+	                  if ($.isEmptyObject(obj)) {
+	                      $('#email_alert').hide();
+	                      $('#registration_button').removeAttr('disabled');
+	                  } else{
+	                      $('#email_alert').show();
+	                      $('#registration_button').attr('disabled', 'true');
+	                  }
+	              });
+	          }); 
+	      });
+		</script>
 		

@@ -161,26 +161,7 @@ class m_users extends MY_Model
 		$update = $this->db->update('users',$newData);
 	}
 
-	function identifier_builder($email)
-	{
-		$sql = "SELECT 
-					`usr`.`email`,
-					`ustyp`.`user_type`
-				FROM `users` `usr`
-				LEFT JOIN `user_types` `ustyp`
-				ON `usr`.`user_type_id` = `ustyp`.`user_type_id`
-				WHERE `usr`.`email` = '$email'";
-		$result = $this->db->query($sql);
-		$result = $result->result_array();
-		$result = $result[0];
-		// echo "<pre>";print_r($result);die();
-		$scope = date('MD');
-		$encrypt_key = $this -> encrypt -> get_key();
-		$input = $email.$result['user_type'].$scope.$encrypt_key.$result['email'];
-		$identifier = strtoupper(hash('sha256', $input));
 
-		return $identifier;
-	}
 
 	function user_details($table, $user_id)
 	{

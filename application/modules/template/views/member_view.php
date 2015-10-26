@@ -68,7 +68,7 @@
             <!-- start: USER DROPDOWN -->
             <li class="dropdown current-user">
               <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-                <img src="<?php echo base_url();?>assets/admin/images/avatar-1-small.jpg" class="circle-img" alt="">
+                <img style="width:35px;height:35px;" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT6m5Lmn35SKLeqIJ-g3QTaazCOx1FyMK1lv5dXVY9OPTmbSomY" class="circle-img" alt="">
                 <span class="username">Username</span>
                 <i class="clip-chevron-down"></i>
               </a>

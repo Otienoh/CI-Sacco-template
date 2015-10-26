@@ -30,6 +30,16 @@ class MY_Controller extends MX_Controller{
 		return $data;
 	}
 
+	function identifier_builder($email)
+	{
+		$encrypt_key = $this->config->item('activation');
+		$scope = date('MD');
+		$input = $email.$scope.$encrypt_key.$email;
+		$identifier = strtoupper(hash('sha256', $input));
+
+		return $identifier;
+	}
+
 	function status_3level($status)
 	{
 		$tag = '';

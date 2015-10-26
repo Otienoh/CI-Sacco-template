@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Template Name: Clip-One - Frontend | Build with Twitter Bootstrap 3 | Version: 1.5 | Author: ClipTheme -->
 <!--[if IE 8]><html class="ie8" lang="en"><![endif]-->
 <!--[if IE 9]><html class="ie9" lang="en"><![endif]-->
 <!--[if !IE]><!-->
@@ -7,7 +6,6 @@
 	<!--<![endif]-->
 	<!-- start: HEAD -->
 	
-<!-- Mirrored from www.cliptheme.com/preview/frontend/clip-one/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Sep 2015 16:10:46 GMT -->
 <head>
 		<title>AdiSacco</title>
 		<!-- start: META -->
@@ -166,7 +164,7 @@
 							</li>
 							<li>
 								<a  href="<?php echo base_url();?>users/login">
-									LOGIN 
+									LOGIN / SIGN-UP
 								</a>
 							</li>
 							
@@ -189,7 +187,7 @@
 					<ul>
 						<!-- start: FIRST SLIDE -->
 						<li data-transition="fade" data-slotamount="7" data-masterspeed="1500" >
-							<img src="<?php echo base_url();?>assets/frontend/images/sliders/slidebg1.png"  style="background-color:rgb(246, 246, 246)" alt="slidebg1"  data-bgfit="cover" data-bgposition="left bottom" data-bgrepeat="no-repeat">
+							<img src="<?php echo base_url();?>assets/frontend/images/sliders/slidebg1.png"  style="background-color:rgb(246, 246, 246);" alt="slidebg1"  data-bgfit="cover" data-bgposition="left bottom" data-bgrepeat="no-repeat">
 							<div class="caption lft slide_title slide_item_left"
 							data-x="0"
 							data-y="105"
@@ -624,6 +622,4 @@
 			});
 		</script>
 	</body>
-
-<!-- Mirrored from www.cliptheme.com/preview/frontend/clip-one/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Sep 2015 16:12:50 GMT -->
 </html>
