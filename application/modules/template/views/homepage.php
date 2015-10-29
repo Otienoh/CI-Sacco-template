@@ -221,7 +221,7 @@
 							data-speed="700"
 							data-start="1000"
 							data-easing="easeOutExpo"  >
-								<img src="<?php echo base_url();?>assets/frontend/images/free-woman.png" alt="Image 1">
+								<img src="<?php echo base_url();?>assets/frontend/images/free-woman.jpg" alt="Image 1">
 							</div>
 						</li>
 						<!-- end: FIRST SLIDE -->
@@ -318,11 +318,11 @@
 						<div class="col-sm-4">
 							<div class="core-box">
 								<div class="heading">
-									<i class="clip-mobile circle-icon"></i>
+									<i class="clip-data circle-icon"></i>
 									<h2>Savings Management</h2>
 								</div>
 								<div class="content">
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									Users/members  add and update information regarding Deposits, Savings, Shares account on daily, monthly (periodically) basis.
 								</div>
 								
 							</div>
@@ -330,11 +330,11 @@
 						<div class="col-sm-4">
 							<div class="core-box">
 								<div class="heading">
-									<i class="clip-clip circle-icon"></i>
+									<i class="clip-archive circle-icon"></i>
 									<h2>Loan Management &#038; Tracking</h2>
 								</div>
 								<div class="content">
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									Register new members and track their membership detail, loans information, savings details and back office operations.
 								</div>
 								
 							</div>
@@ -342,11 +342,11 @@
 						<div class="col-sm-4">
 							<div class="core-box">
 								<div class="heading">
-									<i class="clip-cogs circle-icon"></i>
+									<i class="clip-users circle-icon"></i>
 									<h2>Membership Management</h2>
 								</div>
 								<div class="content">
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									This module generates all reports and statements in the system, which can be exported to other software applications like excel, pdf, print and view only.
 								</div>
 								
 							</div>
@@ -357,11 +357,11 @@
 						<div class="col-sm-4">
 							<div class="core-box">
 								<div class="heading">
-									<i class="clip-mobile circle-icon"></i>
+									<i class="clip-stats circle-icon"></i>
 									<h2>Reporting Module</h2>
 								</div>
 								<div class="content">
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									This module generates all reports and statements in the system, which can be exported to other software applications like excel, pdf, print and view only.
 								</div>
 								
 							</div>
@@ -369,11 +369,11 @@
 						<div class="col-sm-4">
 							<div class="core-box">
 								<div class="heading">
-									<i class="clip-clip circle-icon"></i>
+									<i class="clip-mobile circle-icon"></i>
 									<h2>Alert &#038; Notification Management </h2>
 								</div>
 								<div class="content">
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									Alerts to monitor all system users via audit trail/ log. CRUD business/organization details, system database back up activities.
 								</div>
 								
 							</div>
@@ -381,11 +381,11 @@
 						<div class="col-sm-4">
 							<div class="core-box">
 								<div class="heading">
-									<i class="clip-cogs circle-icon"></i>
+									<i class="clip-folder circle-icon"></i>
 									<h2>General Ledger</h2>
 								</div>
 								<div class="content">
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									This module performs basic book keeping activities for the Sacco based on the information captured. Journals/Bank Reconciliations/General Ledger/Trial Balance/Balance Sheet/Profit and Loss Statement .
 								</div>
 								
 							</div>
@@ -407,23 +407,11 @@
 					<div class="row animate-group">
 						<div class="col-sm-4">
 							<div class="icon-box animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'>
-								<i class="icon-box-icon fa fa-pencil"></i>
+								<i class="icon-box-icon fa fa-code "></i>
 								<h3 class="icon-box-title">Design</h3>
 								<div class="icon-box-content">
 									<p>
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-										
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="icon-box animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'>
-								<i class="icon-box-icon fa fa-code"></i>
-								<h3 class="icon-box-title">Maintain</h3>
-								<div class="icon-box-content">
-									<p>
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+										We are truly committed to work closely with our clients to deliver high tech solutions which are custom-tailored to suit their respective goals, vision and mission.
 										
 									</p>
 								</div>
@@ -432,10 +420,22 @@
 						<div class="col-sm-4">
 							<div class="icon-box animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'>
 								<i class="icon-box-icon fa fa-bug"></i>
+								<h3 class="icon-box-title">Maintain</h3>
+								<div class="icon-box-content">
+									<p>
+									We work behind the scenes as your technology partners and provide you the support you need to make your Sacco successful
+										
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="icon-box animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'>
+								<i class="icon-box-icon fa fa-pencil"></i>
 								<h3 class="icon-box-title">Support</h3>
 								<div class="icon-box-content">
 									<p>
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+										We employ a team of strategic advisors who help you achieve rapid, lucrative growth and execute the right strategies to achieve great outcomes.
 										
 									</p>
 								</div>
@@ -449,7 +449,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-6">
-							<img src="<?php echo base_url();?>assets/frontend/images/iphoneIpad-495x400.png" class="img-responsive animate-if-visible" data-animation-options='{"animation":"tada", "duration":"600"}'>
+							<img src="<?php echo base_url();?>assets/frontend/images/iphoneIpad-495x400.jpg" class="img-responsive animate-if-visible" data-animation-options='{"animation":"tada", "duration":"600"}'>
 						</div>
 							<div class="col-md-6">
 							<h2>What Client’s Say</h2>
@@ -466,7 +466,7 @@
 												<div class="testimonial-arrow-down"></div>
 												<div class="testimonial-author">
 													<div class="img-thumbnail img-thumbnail-small">
-														<img src="<?php echo base_url();?>assets/frontend/images/avatar-1.jpg" alt="">
+														<img src="<?php echo base_url();?>assets/frontend/images/avatar-3.jpg" alt="">
 													</div>
 													<p>
 														<strong>Joshua</strong> <span> Waikiki Sacco</span>
@@ -484,7 +484,7 @@
 												<div class="testimonial-arrow-down"></div>
 												<div class="testimonial-author">
 													<div class="img-thumbnail img-thumbnail-small">
-														<img src="<?php echo base_url();?>assets/frontend/images/avatar-2.jpg" alt="">
+														<img src="<?php echo base_url();?>assets/frontend/images/avatar-5.png" alt="">
 													</div>
 													<p>
 														<strong>Julie</strong><span>Lamada Sacco</span>
