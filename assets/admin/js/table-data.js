@@ -116,7 +116,7 @@ var TableData = function () {
 			}
 			var nRow = $(this).parents('tr')[0];
 			bootbox.confirm("Are you sure to delete this row?", function(result) {
-				if (result) {
+				if (result) {;
 					$.blockUI({
 					message : '<i class="fa fa-spinner fa-spin"></i> Do some ajax to sync with backend...'
 					});
@@ -149,6 +149,8 @@ var TableData = function () {
 			e.preventDefault();
 
 			var nRow = $(this).parents('tr')[0];
+
+					
 			$.blockUI({
 					message : '<i class="fa fa-spinner fa-spin"></i> Do some ajax to sync with backend...'
 					});

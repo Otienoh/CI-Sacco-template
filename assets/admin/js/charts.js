@@ -480,7 +480,13 @@ var Charts = function () {
             ["March", 4],
             ["April", 13],
             ["May", 17],
-            ["June", 9]
+            ["June", 9],
+            ["July", 10],
+            ["August", 8],
+            ["September", 4],
+            ["October", 13],
+            ["November", 17],
+            ["December", 9]
         ];
         $.plot("#placeholder5", [data_category], {
             series: {

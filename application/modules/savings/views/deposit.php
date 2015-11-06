@@ -76,8 +76,8 @@
 													<ol>
 														<li>Go to M-PESA Menu</li>
 														<li>Select <strong>Pay Bill</strong></li>
-														<li>Enter <strong>530100</strong> as the <strong>Business Number</strong></li>
-														<li>Enter <strong>613526</strong> as the <strong>Account Number</strong></li>
+														<li>Enter <strong>XXXXXX</strong> as the <strong>Business Number</strong></li>
+														<li>Enter <strong>XXXXXX</strong> as the <strong>Account Number</strong></li>
 														<li>Enter the value amount to pay (NO COMMAS) e.g.: 3000 </li>
 														<li>Enter your <strong>M-PESA PIN</strong></li>
 														<li>Send the request</li>
@@ -107,8 +107,8 @@
 														<li>Go to Orange-Money Menu</li>
 														<li>Select <strong>Payments</strong></li>
 														<li>Select <strong>Pay Bill</strong></li>
-														<li>Enter <strong>530100</strong> as the <strong>Business Number</strong></li>
-														<li>Enter <strong>613526</strong> as the <strong>Bill Reference Number</strong></li>
+														<li>Enter <strong>XXXXXX</strong> as the <strong>Business Number</strong></li>
+														<li>Enter <strong>XXXXXX</strong> as the <strong>Bill Reference Number</strong></li>
 														<li>Enter the value amount to pay (NO COMMAS) e.g.: 3000 </li>
 														<li>Accept the confirmation dialog</li>
 														<li>Enter your <strong>Orange-Money PIN</strong></li>

@@ -12,18 +12,52 @@ function get_table() {
     return $table;
 }
 
+function get_laon_rate($id)
+{
+	$this->db->select('rates');
+ 	$this->db->from('loan_types');
+ 	$this->db->where('loan_type_id', $id);
+
+ 	$query = $this->db->get()->result_array();
+ 	return $query[0]['rates'];
+}
+
 function get_loan_type(){
 $query=$this->db->get('loan_types');
-return $query->result();
+return $query;
 }
 
-function loan_repayment_months()
+function confirm_guarantors_approval($loan_id)
 {
-	$this->db->where('status',1);
-	$query=$this->db->get('loan_repayment_periods');
-	return $query->result();
+	$sql = "SELECT `status`
+			FROM
+				`loan_notifications`
+			WHERE `loan_id` = '$loan_id'";
+	$result = $this->_custom_query($sql)->result_array();
+
+	$flag = TRUE;
+	foreach ($result as $key => $value) {
+		if($value['status']==0)
+		{
+			$flag = FALSE;
+		}
+	}
+	// echo $flag;die();
+	return $flag;
 }
 
+function loan_repayment($loan_id)
+{
+	$id=$this->input->post('edit_id');
+	
+	$amount_payable=$this->input->post('amount_payable');
+	$amount_deposit=$this->input->post('edit_amount');
+	$data = array(
+				'loan_id' => $loan_id,
+				'payment_amount' => $amount_deposit
+				);
+	return $this->db->insert('loan_repayment', $data);
+}
 
 function get($order_by){
 $table = $this->get_table();
@@ -104,6 +138,7 @@ function get_loan_details($loan_id)
 {
 	$sql = "SELECT *
 			FROM `loans` `ln`
+			JOIN `loan_notifications` `lns` ON `ln`.`loan_id` = `lns`.`loan_id`
 			JOIN `users` `us` ON `ln`.`user_id` = `us`.`user_id`
 			JOIN `loan_types` `lt` ON `ln`.`loan_type` = `lt`.`loan_type_id`
 			JOIN `members` `mb` ON `mb`.`user_id` = `ln`.`user_id`

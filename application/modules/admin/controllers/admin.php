@@ -18,7 +18,7 @@ class Admin extends MY_Controller
 		$data['section'] = "ADI Sacco";
 	    $data['subtitle'] = "Administrator";
 	  	$data['page_title'] = "Dashboard";
-	  	$data['subpage_title'] = "overview & stats";
+	  	$data['subpage_title'] = "overview";
 		$data['module'] = "dashboard";
 		$data['view_file'] = "home";
 		echo Modules::run('template/admin', $data);
@@ -87,6 +87,46 @@ class Admin extends MY_Controller
 		
 
 		return $manager_details;
+	}
+
+	function reports()
+	{
+		$this->load->module('reports');
+		$data = $this->reports->loan_monthly_amounts(date('Y'));
+		$data['height'] = 450;
+		$data['year'] = date('Y');
+		$data['section'] = "ADI Sacco";
+	    $data['subtitle'] = "Administrator";
+	  	$data['page_title'] = "Reports";
+	  	$data['subpage_title'] = "Statistics and Analytics";
+		$data['module'] = "admin";
+		$data['view_file'] = "reports";
+		echo Modules::run('template/admin', $data);
+	}
+
+	function loans()
+	{
+		$this->load->module('loans');
+		$data['loan_types'] = $this->loans->get_loan_types();
+		$data['section'] = "ADI Sacco";
+	    $data['subtitle'] = "Administrator";
+	  	$data['page_title'] = "Loans";
+	  	$data['subpage_title'] = "Loan Configurations";
+		$data['module'] = "admin";
+		$data['view_file'] = "loans_view";
+		echo Modules::run('template/admin', $data);
+	}
+
+	function add_loan_type()
+	{
+		$insert = $this->m_admin->add_loan_type();
+		redirect('admin/loans');
+	}
+
+	function edit_loan_type()
+	{
+		$edit = $this->m_admin->edit_loan_type();
+		redirect('admin/loans');
 	}
 }
 ?>

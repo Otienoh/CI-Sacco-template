@@ -1,10 +1,9 @@
   <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-   $array = array();
-      
-      foreach($maloantype as $row ){
-      $array[$row->loan_type_id] = $row->name;
-
+    $array = array();
+    $array[0] = 'Select Loan Type' ;
+      foreach($maloantype as $key =>$value ){
+        $array[$value['loan_type_id']] = $value['name'];
       }
 
   ?>
@@ -100,7 +99,7 @@
                               <option value="Development">Development Loan</option>
                               <option value="Emergency">Emergency Loan</option>
                             </select> -->
-                          <?php echo form_dropdown('loan_type',$array , $loan_type, 'id="loan_type" class="form-control"');  ?>
+                          <?php echo form_dropdown('loan_type',$array, 0, 'id="loan_type" class="form-control"');  ?>
                           </div>
                         </div>
                         <div class="form-group">
@@ -108,12 +107,12 @@
                             Repayment Months <span class="symbol required"></span>
                           </label>
                           <div class="col-sm-7">
-                            <?php echo form_dropdown('months',$repayment_periods , $months, 'id="months" class="form-control"');  ?>
+                            <?php echo form_input(['name' => 'months', 'id' => 'months',  'value' => $months ,'class' => 'form-control', 'placeholder' => 'Repayment Period in Months']); ?>
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="col-sm-2 col-sm-offset-8">
-                            <button class="btn btn-blue next-step btn-block">
+                            <button class="btn btn-blue next-step btn-block" id="first_next">
                               Next <i class="fa fa-arrow-circle-right"></i>
                             </button>
                           </div>
@@ -248,6 +247,7 @@
                         </div>
                       </div>
                     </div>
+                    <input type="hidden" name="rate" id="rate" />
                   </form>
                 </div>
               </div>
@@ -256,6 +256,24 @@
           </div>
           <script type="text/javascript">
           $(document).ready(function(){
+            sd = $('#loan_type').val();
+            if (sd == 0) {
+              $('#first_next').attr('disabled','true');
+            }
+
+            $('#loan_type').change(function(){
+              id = $(this).val();
+              if (id!=0) {
+                $('#first_next').removeAttr('disabled');
+                $.get('<?php echo base_url();?>loans/loan_rate/'+id, function(data){
+                  rate = jQuery.parseJSON(data);
+                  $('#rate').val(rate);
+                })
+              }else{
+                $('#first_next').attr('disabled','true');
+              }
+            });
+
             $('#error1').hide();
             $('#error2').hide();
             $('#error3').hide();
