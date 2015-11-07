@@ -1,13 +1,20 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-
-
+<style type="text/css">
+  #button {
+    padding-bottom: 0.5em;
+  }
+</style>
          
           <!-- start: PAGE CONTENT -->
-          <div class="row">
 
-            <div class="col-sm-9"></div>
+          <div class="row">
+            <div class="col-sm-9">
+            <?php if($this->session->flashdata('warning')){?>
+              <div class="alert alert-danger"><button data-dismiss="alert" class="close">&times;</button><i class="fa fa-exclamation-triangle"></i><strong>Warning!</strong> One or both of the guarantors have not responded to the request. Please wait until both respond.</div>
+            <?php }?>
+            </div>
              <!-- <button class="btn btn-danger">Decline Loan</button> -->
-            <div class="col-sm-3">
+            <div class="col-sm-3" id="button">
             <?php
               if($loan_details[0]['status']!=1){?>
               <a href="<?php echo base_url();?>manager/loan_clearance/<?php echo $loan_details[0]['loan_id'];?>/1"><button class="btn btn-success">Accept Loan</button></a>

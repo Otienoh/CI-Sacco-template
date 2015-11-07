@@ -110,8 +110,15 @@ class Manager extends MY_Controller
 
 	function loan_clearance($loan_id, $status)
 	{
-		$clearance = $this->loans->_custom_query($this->m_manager->prepare_loan_clearance_stmt($loan_id,$status));
-		redirect(base_url().'manager/loans');
+		$affirmed = $this->loans->confirm_guarantor_approval($loan_id);
+		if ($affirmed) {
+			$clearance = $this->loans->_custom_query($this->m_manager->prepare_loan_clearance_stmt($loan_id,$status));
+			redirect(base_url().'manager/loans');
+		} else {
+			$this->session->set_flashdata('warning', 'No data found');
+			redirect(base_url().'manager/loan_preview/'.$loan_id);
+			
+		}
 	}
 
 }

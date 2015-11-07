@@ -48,5 +48,28 @@ class m_admin extends MY_Model
 
 		$insert = $this->db->insert('managers', $data);
 	}
+
+	function add_loan_type()
+	{
+		$data = array(
+					'name' => $this->input->post('name'),
+					'description' => $this->input->post('description'),
+					'rates' => $this->input->post('rate'),
+					'added_by' => $this->session->userdata('user_id')
+					);
+		return $this->db->insert('loan_types', $data);
+	}
+
+	function edit_loan_type()
+	{
+		$data = array(
+                'name' => $this->input->post('edit_name'),
+                'description' => $this->input->post('edit_description'),
+                'rates' => $this->input->post('edit_rate'),
+             );
+
+	 $this->db->where('loan_type_id', $this->input->post('edit_id'));
+	 $this->db->update('loan_types', $data); 
+	}
 }
 ?>

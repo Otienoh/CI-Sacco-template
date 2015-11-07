@@ -177,6 +177,7 @@
             
           </div>
           <!-- end: PAGE CONTENT-->
+        <script src="<?php echo base_url();?>assets/admin/js/index.js"></script>
        <script>
       jQuery(document).ready(function() {
         Main.init();

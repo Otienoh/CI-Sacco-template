@@ -11,8 +11,7 @@ class Loans extends MY_Controller
 
 		$data= $this->get_data_from_post();
 		$this->load->model('m_loans');
-		$data['maloantype']  = $this->m_loans->get_loan_type();
-		$data['repayment_periods'] = $this->application_repayment_periods();
+		$data['maloantype']  = $this->m_loans->get_loan_type()->result_array();
 		$data['section'] = "ADI Sacco";
 		$data['subtitle'] = "Loan Module";
 		$data['page_title'] = "Loan";
@@ -148,7 +147,8 @@ class Loans extends MY_Controller
 		$data['loan_type']=$this->input->post('loan_type', TRUE);
 		$data['months']=$this->input->post('months', TRUE); 
 		$data['month_income']=$this->input->post('month_income', TRUE);
-		
+		$data['rates']=$this->input->post('rate', TRUE);
+
 		return $data;
 
 	}
@@ -172,15 +172,16 @@ class Loans extends MY_Controller
 	  else
 	  {       
 	   $data =  $this->get_data_from_post();
-	    if ($data['loan_type'] ==3) {$data['rates']=15;} else {$data['rates']=20;}
-		$data['instalments']=($data['rates'] + $data['rates'] / ( (1+ $data['rates']) ^  $data['months'] -1)) * $data['loan_amount'] ;
-		$data['loan_payable']= $data['instalments'] * $data['months'];
+	    
+	    $data['loan_payable']= ((($data['rates']*$data['months'])/100)*$data['loan_amount'])+$data['loan_amount'];
+		$data['instalments']=$data['loan_payable']/$data['months'];
 		$data['status']= 0; 
 		$data['user_id']=$this->session->userdata('user_id');
 		$data['is_paid']=0;
 		$data['is_risky']=0;
 	   	
-	   	
+	   	$guarantor1 = $this->input->post('guarantor1', TRUE);
+		$guarantor2 = $this->input->post('guarantor2', TRUE);
 	   // if(is_numeric($update_id)){
 	   //   $this->_update($update_id, $data);
 	   //   $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">County details updated successfully!</div>');
@@ -190,12 +191,17 @@ class Loans extends MY_Controller
 	     $id = mysql_insert_id();
 	     $notification = array(
 	     					'loan' => $id,
-	   						'guarantor1'=> $this->input->post('guarantor1', TRUE),
-							'guarantor2'=> $this->input->post('guarantor2', TRUE),
+	   						'guarantor1'=> $guarantor1,
+							'guarantor2'=> $guarantor2,
 							'amount'=> $this->input->post('loan_amount')
 	   						);
 	     $this->load->module('notifications');
 	     $notify = $this->notifications->send_notification($notification);
+	     $sent = $this->send_email($this->m_loans->get_member_email($guarantor1),'Loan Guarantee Request', $this->email_template($this->m_loans->get_user_member_data($this->session->userdata('user_id'))->result_array()));
+	     $sent = $this->send_email($this->m_loans->get_member_email($guarantor2),'Loan Guarantee Request', $this->email_template($this->m_loans->get_user_member_data($this->session->userdata('user_id'))->result_array()));
+	     // $email_notification['guarantors'][1] = $guarantor2;
+	     // $email_notification['applicant'] = $this->m_loans->get_user_member_data($this->session->userdata('user_id'))->result_array();
+	     // $sent = $this->send_email_notification($email_notification);
 	     $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Your loan request has been added successfully!</div>');
 	   //}
 	   
@@ -226,7 +232,7 @@ class Loans extends MY_Controller
 									<td>'.$guarantor2[0]['last_name'].' '.$guarantor2[0]['first_name'].'</td>
 									<td>'.$this->status_3level($value['status']).'</td>
 									<td>'.$this->status_3level($value['is_paid']).'</td>
-									<td><a href="'.base_url().'loans/loan_preview/'.$value['loan_id'].'"><button class="btn btn-primary">Preview Loan</button></a></td>
+									<td><a href="'.base_url().'member/loan_preview/'.$value['loan_id'].'"><button class="btn btn-primary">Preview Loan</button></a></td>
 								</tr>';
 				$count++;
 			}
@@ -238,20 +244,64 @@ class Loans extends MY_Controller
 		return $loans_data;
 	}
 
-	function application_repayment_periods()
+	/*
+	*Confirm_guarantor_approval() checks if the guarantors have responded to the loan requested
+	*If all the guarantors have responded it flags a pass
+	*If one or both of the guarantors have not responded it flags a withhold. 
+	*/
+	function confirm_guarantor_approval($loan_id)
 	{
-		$repayments = array();
-      	$periods = $this->m_loans->loan_repayment_months();
-	  	foreach($periods as $row ){
-	  		$repayments[$row->loan_repayment_period_id] = $row->months;
-	  	}
-	  	return $repayments;
+		$this->load->model('m_loans');
+		return $this->m_loans->confirm_guarantors_approval($loan_id);
+	}
+
+	function get_loan_types()
+	{
+		$table = "";
+		$count=1;
+		$this->load->model('m_loans');
+		$loan_types = $this->m_loans->get_loan_type()->result_array();
+		if($loan_types){
+			foreach ($loan_types as $key => $value) {
+				$id = $value['loan_type_id'];
+				$name = $value['name'];
+				$rate = $value['rates'];
+				$description = $value['description'];
+
+				$table .= "<tr>";
+				$table .= "<td>".$count."</td>";
+				$table .= "<td>".$value['name']."</td>";
+				$table .= "<td>".$value['rates']."%</td>";
+				$table .= "<td><a href='#responsive' data-toggle='modal' onclick=\"edit_loan_type($id,'$name','$rate','$description')\"><button class='btn btn-primary'>Edit</button></a></td>";
+				$table .= "</tr>";
+				$count++;
+			}
+		}else
+		{
+			$table = "<tr><td colspan='4'><center>No Loan Types Created yet!</center></td></tr>";
+		}
+		
+		return $table;
+	}
+
+	function repay_loan($loan_id)
+	{
+		$this->load->model('m_loans');
+		return $this->m_loans->loan_repayment($loan_id);
 	}
 
 	function confirm_guarantor($id){
 		$this->load->module('member');
 		$memeber = $this->member->get_active_memeber($id)->result_array();
 		echo json_encode($memeber);
+	}
+
+	function loan_rate($id)
+	{
+		$this->load->model('m_loans');
+		$rate = $this->m_loans->get_laon_rate($id);
+
+		echo json_encode($rate);
 	}
 
 	function get($order_by){
@@ -328,6 +378,31 @@ class Loans extends MY_Controller
 		$data['view_file'] = "loan_preview";
 		// echo "<pre>";print_r($data);die();
 		echo Modules::run('template/member', $data);
+	}
+
+
+	function email_template($data)
+	{
+		$template = "<!DOCTYPE html>
+		<html>
+		<head>
+		<link href='http://fonts.googleapis.com/css?family=Noto+Sans|Cabin|Open+Sans' rel='stylesheet' type='text/css'>
+		<style type='text/css'>
+			body
+			{
+				font-family: 'Noto Sans', sans-serif;
+			}
+		</style>
+		</style>
+		<body>
+			<p>Hello, </p>
+			<p>This Email is to notify you that one, ".$data[0]['last_name']." ".$data[0]['first_name']." ".$data[0]['middle_name'].", has requested you to be a guarantor in a loan he/she has applied.</p>
+			<p>Please Login to the system to accept or decline this request: <a href='".base_url() ."'>Click Here</a></p>
+			<p>If you fail to respond within 48 hours the application will be declined.</p>
+		</body>
+		</html>";
+
+		return $template;
 	}
 
 }

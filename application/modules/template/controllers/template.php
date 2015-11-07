@@ -29,10 +29,9 @@ class Template extends MY_Controller {
         $this->load->view('homepage');
     }
 
-	
-	function redirect($type)
+    function redirect($type)
 	{
-		return $this->M_Template->get_redirect($type);
+		return $this->m_template->get_redirect($type);
 	}
 
 

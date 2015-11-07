@@ -23,25 +23,26 @@ class Users extends MY_Controller
 
 	function registration()
 	{
-		$email = $this->input->post('email');
-		$identifier = $this->m_users->identifier_builder($email);
-		$log_registration = $this->m_users->register_logs($email,$identifier,$this->hash->password($this->input->post('password')));
+		$email = $this->input->post('email_registration');
+		// echo $email;die();
+		$identifier = $this->identifier_builder($email);
+		$log_registration = $this->m_users->register_logs($email,$identifier,$this->hash->password($this->input->post('password1')));
 		if ($log_registration) {
 			$data['first_name'] = $this->input->post('first_name');
 			$data['last_name'] = $this->input->post('last_name');
 			$data['identifier'] = $identifier;
 			$sent = $this->send_email($email,'New Memeber Registration', $this->email_template($data));
-			$registration['message'] = 'Registration Complete. Activation email has been sent to the email: '.$email;
+			$registration['message'] = '<p style="color:green;">Registration Complete. Activation email has been sent to the email: '.$email.'. Please check the email provided to activate your account.</p>';
 			$insert_member = $this->m_users->register_member_details($log_registration);
 		} else {
-			$registration['message'] = 'Registration Incomplete. Unable to send email to: '.$email;
+			$registration['message'] = '<p style="color:red;">Registration Incomplete. Unable to send email to: '.$email.'. Please try again later.</p>';
 		}
 		$this->load->view('registration_v',$registration);		
 	}
 	
 	function homepage(){
 
-echo Modules::run('template/homepage');
+		echo Modules::run('template/homepage');
 	
 	}
 
@@ -105,11 +106,7 @@ echo Modules::run('template/homepage');
 	{
 		$email = $this->m_users->check_email($email);
 
-		if($email){
-			return TRUE;
-		}else{
-			return FALSE;
-		}
+		echo json_encode($email);
 	}
 
 	function profile()

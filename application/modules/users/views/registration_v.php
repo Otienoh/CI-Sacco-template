@@ -29,7 +29,7 @@
 		<div class="main-login col-sm-4 col-sm-offset-4">
 			<div class="logo">ADI <i class="clip-network"></i> Sacco
 			</div>
-			<div class="logo"><?php if($this->session->flashdata('register')){echo $this->session->flashdata('register'); }?>
+			<div class="logo"><?php echo $message; ?>
 			</div>
 			<div class="copyright">
 				2015 &copy; Sacco System.

@@ -140,14 +140,14 @@ var Login = function () {
                 email: {
                     required: true
                 },
-                password: {
+                password1: {
                     minlength: 6,
                     required: true
                 },
                 password_again: {
                     required: true,
-                    minlength: 5,
-                    equalTo: "#password"
+                    minlength: 6,
+                    equalTo: "#password1"
                 },
                 agree: {
                     minlength: 1,

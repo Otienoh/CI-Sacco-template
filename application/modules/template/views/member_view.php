@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/perfect-scrollbar/src/perfect-scrollbar.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/css/theme_light.css" type="text/css" id="skin_color">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/css/print.css" type="text/css" media="print"/>
+    <link href="<?php echo base_url();?>assets/admin/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url();?>assets/admin/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
     <!--[if IE 7]>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/font-awesome/css/font-awesome-ie7.min.css">
     <![endif]-->
@@ -68,7 +70,7 @@
             <!-- start: USER DROPDOWN -->
             <li class="dropdown current-user">
               <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-                <img src="<?php echo base_url();?>assets/admin/images/avatar-1-small.jpg" class="circle-img" alt="">
+                <img style="width:35px;height:35px;" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT6m5Lmn35SKLeqIJ-g3QTaazCOx1FyMK1lv5dXVY9OPTmbSomY" class="circle-img" alt="">
                 <span class="username">Username</span>
                 <i class="clip-chevron-down"></i>
               </a>
@@ -136,11 +138,6 @@
                     <span class="title"> View Loans </span>
                   </a>
                 </li>
-                <li>
-                  <a href="#">
-                    <span class="title"> Loan Repayment </span>
-                  </a>
-                </li>
               </ul>
             </li>
             <li>
@@ -160,7 +157,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="<?php echo base_url();?>savings/withdraw">
                     <span class="title">Withdraw Savings</span>
                   </a>
                 </li>
@@ -172,36 +169,37 @@
                 <span class="selected"></span>
               </a>
               <ul class="sub-menu">
+              <li>
+                  <a href="<?php echo base_url();?>loans/guarantee_requests">
+                    <span class="title">Guarantee Requests</span>
+                  </a>
+                </li>
                 <li>
                   <a href="<?php echo base_url();?>loans/view_guarantors">
                     <span class="title">My Guarantors</span>
                   </a>
                 </li>
-                <li>
-                  <a href="<?php echo base_url();?>loans/guarantee_requests">
-                    <span class="title">Guarantee Requests</span>
-                  </a>
-                </li>
+                
               </ul>
             </li>
-            <li>
+            <!-- <li>
               <a href="#"><i class="clip-data"></i>
                 <span class="title">ACCOUNTING</span>
                 <span class="selected"></span>
               </a>
-            </li>
+            </li> -->
             <li>
               <a href="#"><i class="clip-file"></i>
                 <span class="title">REPORTS</span>
                 <span class="selected"></span>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="#"><i class="clip-notification"></i>
                 <span class="title">INFO</span>
                 <span class="selected"></span>
               </a>
-            </li>
+            </li> -->
             <li>
               <a href="#">
                 
@@ -321,20 +319,15 @@
     <script src="<?php echo base_url();?>assets/admin/js/main.js"></script>
     <!-- end: MAIN JAVASCRIPTS -->
     <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-    <script src="<?php echo base_url();?>assets/admin/plugins/flot/jquery.flot.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/plugins/flot/jquery.flot.pie.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/plugins/flot/jquery.flot.resize.min.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/plugins/jquery.sparkline/jquery.sparkline.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/fullcalendar/fullcalendar/fullcalendar.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/js/index.js"></script>
+    <!--<script src="<?php echo base_url();?>assets/admin/js/index.js"></script>-->
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
     <script src="<?php echo base_url();?>assets/admin/js/form-wizard.js"></script>
-
-
-
+    <script src="<?php echo base_url();?>assets/admin/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
+    <script src="<?php echo base_url();?>assets/admin/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
 
     <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
    <script>
