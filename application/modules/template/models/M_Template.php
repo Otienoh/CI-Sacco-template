@@ -3,7 +3,7 @@ if(!defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * 
 */
-class M_Template extends MY_Model
+class m_template extends MY_Model
 {
 	
 	function __construct()
