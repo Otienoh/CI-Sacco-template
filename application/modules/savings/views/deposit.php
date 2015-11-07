@@ -1,3 +1,10 @@
+<style type="text/css">
+	name {
+		color: #FFF;
+		font: sans-serif;
+		font-weight: 12px;
+	}
+</style>
 <div class="row">
 	<div class="col-sm-12">
 		<!-- start: SELECT BOX PANEL -->
@@ -35,12 +42,23 @@
 							</select>
 						</div>
 					</div>
-					<div class="form-group" id="bank-transfer">
-						<label class="col-sm-2 symbol required" for="amount">
-							Enter Account Number
-						</label>
-						<div class="col-sm-9">
-							<input type="text" name="code_identifier_bank" id="code_identifier_bank" placeholder="Enter Account Number" class="form-control">
+					<div id="bank-transfer">
+						<div class="form-group">
+							<label class="col-sm-2 symbol required" for="amount">
+								Enter Account Number
+							</label>
+							<div class="col-sm-9">
+								<input type="text" name="code_identifier_bank" id="code_identifier_bank" placeholder="Enter Account Number" class="form-control">
+							</div>
+						</div>
+						<div  class="form-group">
+							<div class="col-sm-2">
+								
+							</div>
+							<label class="col-sm-9">
+								<input type="checkbox" name="standing_order" id="standing_order" class="square-grey" value="1">
+								If you select this, the amount entered below will be automatically deducted from your payroll monthly.
+							</label>
 						</div>
 					</div>
 					<div id="mobile-transfer">

@@ -30,6 +30,7 @@ class m_savings extends MY_Model
 		} else {
 			$code = $this->input->post('code_identifier_bank');
 		}
+		$amount = $this->input->post('amount');
 		
 		$data = array(
 					'user_id' => $user_id,
@@ -37,6 +38,17 @@ class m_savings extends MY_Model
 					'deposit' => $this->input->post('amount'),
 					'description' => 'Code: '.$code.' for a deposit transaction made through: '.$client);
 		$insert = $this->db->insert('savings', $data);
+
+
+		if ($this->input->post('standing_order')) {
+			$stand_order = array(
+								'user_id' => $user_id,
+								'account_number' => $code,
+								'amount' => $amount
+								);
+			$insert = $this->db->insert('standing_order', $stand_order);
+		}
+		return $insert;
 	}
 
 	function withdrawal($user_id)
