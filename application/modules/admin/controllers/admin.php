@@ -92,7 +92,8 @@ class Admin extends MY_Controller
 	function reports()
 	{
 		$this->load->module('reports');
-		$data = $this->reports->loan_monthly_amounts(date('Y'));
+		$data['chart'] = $this->reports->loan_monthly_amounts(date('Y'));
+		$data['pie'] = $this->reports->loan_type_popularity();
 		$data['height'] = 450;
 		$data['year'] = date('Y');
 		$data['section'] = "ADI Sacco";

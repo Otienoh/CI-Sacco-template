@@ -76,5 +76,21 @@ class Member extends MY_Controller
 			redirect('loans/view_loans/'.$this->session->userdata('user_id'));
 		}
 	}
+
+	function reports()
+	{
+		$this->load->module('reports');
+		$data['loans_chart'] = $this->reports->loan_monthly_amounts(date('Y'),$this->session->userdata('user_id'));
+		$data['savings_chart'] = $this->reports->savings_monthly_amounts(date('Y'),$this->session->userdata('user_id'));
+		$data['height'] = 450;
+		$data['year'] = date('Y');
+		$data['section'] = "ADI Sacco";
+	    $data['subtitle'] = "Member";
+	  	$data['page_title'] = "Reports";
+	  	$data['subpage_title'] = "Statistics and Analytics";
+		$data['module'] = "member";
+		$data['view_file'] = "reports";
+		echo Modules::run('template/member', $data);
+	}
 }
 ?>

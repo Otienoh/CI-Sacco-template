@@ -1,42 +1,42 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-        <!-- start: PAGE CONTENT -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- start: BASIC CHART PANEL -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-external-link-square"></i>
-                        Monthly Loan Chart
-                        <div class="panel-tools">
-                            <a class="btn btn-xs btn-link panel-collapse collapses" href="#">
-                            </a>
-                            <a class="btn btn-xs btn-link panel-config" href="#panel-config" data-toggle="modal">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <a class="btn btn-xs btn-link panel-refresh" href="#">
-                                <i class="fa fa-refresh"></i>
-                            </a>
-                            <a class="btn btn-xs btn-link panel-expand" href="#">
-                                <i class="fa fa-resize-full"></i>
-                            </a>
-                            <a class="btn btn-xs btn-link panel-close" href="#">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="flot-container">
-                            <div id="div3"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end: BASIC CHART PANEL -->
-            </div>
-        </div>
-        
-        
-        
-        <div class="row">
+		<!-- start: PAGE CONTENT -->
+		<div class="row">
+			<div class="col-md-12">
+				<!-- start: BASIC CHART PANEL -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<i class="fa fa-external-link-square"></i>
+						Monthly Loan Chart
+						<div class="panel-tools">
+							<a class="btn btn-xs btn-link panel-collapse collapses" href="#">
+							</a>
+							<a class="btn btn-xs btn-link panel-config" href="#panel-config" data-toggle="modal">
+								<i class="fa fa-wrench"></i>
+							</a>
+							<a class="btn btn-xs btn-link panel-refresh" href="#">
+								<i class="fa fa-refresh"></i>
+							</a>
+							<a class="btn btn-xs btn-link panel-expand" href="#">
+								<i class="fa fa-resize-full"></i>
+							</a>
+							<a class="btn btn-xs btn-link panel-close" href="#">
+								<i class="fa fa-times"></i>
+							</a>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="flot-container">
+							<div id="div3"></div>
+						</div>
+					</div>
+				</div>
+				<!-- end: BASIC CHART PANEL -->
+			</div>
+		</div>
+		
+		
+		
+		<div class="row">
             <div class="col-md-6">
                     <!-- start: ANNOTATIONS PANEL -->
                     <div class="panel panel-default">
@@ -68,47 +68,47 @@
                     </div>
                     <!-- end: ANNOTATIONS PANEL -->
                 </div>
-            <div class="col-md-6">
-                <!-- start: CATEGORIES PANEL -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-external-link-square"></i>
-                        Categories
-                        <div class="panel-tools">
-                            <a class="btn btn-xs btn-link panel-collapse collapses" href="#">
-                            </a>
-                            <a class="btn btn-xs btn-link panel-config" href="#panel-config" data-toggle="modal">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <a class="btn btn-xs btn-link panel-refresh" href="#">
-                                <i class="fa fa-refresh"></i>
-                            </a>
-                            <a class="btn btn-xs btn-link panel-expand" href="#">
-                                <i class="fa fa-resize-full"></i>
-                            </a>
-                            <a class="btn btn-xs btn-link panel-close" href="#">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="flot-container">
-                            <div id="cont"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end: CATEGORIES PANEL -->
-            </div>
-            
-        </div>
-        
-        
-        
-        <!-- end: PAGE CONTENT-->
+			<div class="col-md-6">
+				<!-- start: CATEGORIES PANEL -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<i class="fa fa-external-link-square"></i>
+						Categories
+						<div class="panel-tools">
+							<a class="btn btn-xs btn-link panel-collapse collapses" href="#">
+							</a>
+							<a class="btn btn-xs btn-link panel-config" href="#panel-config" data-toggle="modal">
+								<i class="fa fa-wrench"></i>
+							</a>
+							<a class="btn btn-xs btn-link panel-refresh" href="#">
+								<i class="fa fa-refresh"></i>
+							</a>
+							<a class="btn btn-xs btn-link panel-expand" href="#">
+								<i class="fa fa-resize-full"></i>
+							</a>
+							<a class="btn btn-xs btn-link panel-close" href="#">
+								<i class="fa fa-times"></i>
+							</a>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="flot-container">
+							<div id="cont"></div>
+						</div>
+					</div>
+				</div>
+				<!-- end: CATEGORIES PANEL -->
+			</div>
+			
+		</div>
+		
+		
+		
+		<!-- end: PAGE CONTENT-->
 
     <script src="<?php echo base_url();?>assets/plugins/Highcharts/js/highcharts.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/Highcharts/js/modules/exporting.js"></script>
-    <script type="text/javascript">
+	<script type="text/javascript">
     $(function () {
     $('#div3').highcharts({
           chart: {
@@ -299,7 +299,7 @@ $(function () {
             text: 'Loan Types Popularity'
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         plotOptions: {
             pie: {

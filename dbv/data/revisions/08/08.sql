@@ -1,0 +1,1 @@
+ALTER TABLE  `loan_repayment` ADD  `repayment_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;

@@ -1,15 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 <!DOCTYPE html>
-<!-- Template Name: Clip-One - Responsive Admin Template build with Twitter Bootstrap 3.x Version: 1.4 Author: ClipTheme -->
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
 <!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
 <!--[if !IE]><!-->
 <html lang="en" class="no-js">
   <!--<![endif]-->
   <!-- start: HEAD -->
-  
-<!-- Mirrored from www.cliptheme.com/preview/admin/clip-one/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 Sep 2015 15:55:49 GMT -->
 <head>
     <title>AdiSacco</title>
     <!-- start: META -->
@@ -32,13 +29,16 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/perfect-scrollbar/src/perfect-scrollbar.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/css/theme_light.css" type="text/css" id="skin_color">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/css/print.css" type="text/css" media="print"/>
+    <link href="<?php echo base_url();?>assets/admin/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url();?>assets/admin/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
     <!--[if IE 7]>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/font-awesome/css/font-awesome-ie7.min.css">
     <![endif]-->
     <!-- end: MAIN CSS -->
     <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/fullcalendar/fullcalendar/fullcalendar.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>-->
+    <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
     <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
     <link rel="shortcut icon" href="favicon.ico" />
   </head>
@@ -143,40 +143,7 @@
                 <li><a href="#"><span class="title"> Loan Defaulters/Risk </span></a></li>
               </ul>
             </li>
-            <li>
-              <a href="javascript:void(0)"><i class="clip-stack-2"></i>
-                <span class="title"> SAVINGS </span><i class="icon-arrow"></i>
-                <span class="selected"></span>
-              </a>
-              <ul class="sub-menu">
-                
-                  <li>
-                    <a href="#">
-                      <span class="title">View Savings</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span class="title"> Savings Journal</span>
-                    </a>
-                  </li>
-              
-                
-              </ul>
-            </li>
-            <li>
-              <a href="javascript:void(0)"><i class="clip-user-5"></i>
-                <span class="title"> GUARANTORS </span><i class="icon-arrow"></i>
-                <span class="selected"></span>
-              </a>
-              <ul class="sub-menu">
-                <li>
-                  <a href="#">
-                    <span class="title">My Guarantors</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
+            
             <li>
               <a href="#"><i class="clip-data"></i>
                 <span class="title">ACCOUNTING</span>
@@ -184,23 +151,12 @@
               </a>
             </li>
             <li>
-              <a href="#"><i class="clip-file"></i>
+              <a href="<?php echo base_url();?>manager/reports"><i class="clip-file"></i>
                 <span class="title">REPORTS</span>
                 <span class="selected"></span>
               </a>
             </li>
-            <li>
-              <a href="#"><i class="clip-notification"></i>
-                <span class="title">INFO</span>
-                <span class="selected"></span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                
-                <span class="selected"></span>
-              </a>
-            </li>
+           
           </ul>
           <!-- end: MAIN NAVIGATION MENU -->
         </div>
@@ -261,7 +217,7 @@
     <!-- start: FOOTER -->
     <div class="footer clearfix">
       <div class="footer-inner">
-        2015 &copy; Sacco System.
+        <?php echo Date('Y')?> &copy; Sacco System.
       </div>
       <div class="footer-items">
         <span class="go-top"><i class="clip-chevron-up"></i></span>
@@ -299,7 +255,7 @@
     <script type="text/javascript" src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/1.10.2/jquery.min.js"></script>
     <![endif]-->
     <!--[if gte IE 9]><!-->
-    <script src="<?php echo base_url();?>assets/admin/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+    
     <!--<![endif]-->
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -314,19 +270,14 @@
     <script src="<?php echo base_url();?>assets/admin/js/main.js"></script>
     <!-- end: MAIN JAVASCRIPTS -->
     <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-    <script src="<?php echo base_url();?>assets/admin/plugins/flot/jquery.flot.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/plugins/flot/jquery.flot.pie.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/plugins/flot/jquery.flot.resize.min.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/plugins/jquery.sparkline/jquery.sparkline.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
     <script src="<?php echo base_url();?>assets/admin/plugins/fullcalendar/fullcalendar/fullcalendar.js"></script>
-    <script src="<?php echo base_url();?>assets/admin/js/index.js"></script>
+    <script src="<?php echo base_url();?>assets/admin/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
+    <script src="<?php echo base_url();?>assets/admin/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script>
       jQuery(document).ready(function() {
         Main.init();
-        Index.init();
       });
     </script>
   </body>
