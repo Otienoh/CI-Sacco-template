@@ -32,6 +32,7 @@ class Member extends MY_Controller
 	function loan_preview($loan_id){
 		$this->load->model('m_member');
 		$data['loan_details'] = $this->loans->_custom_query($this->m_member->get_loan_details($loan_id))->result_array();
+		$data['button'] = NULL;
 		if ($data['loan_details'][0]['is_paid']==0) {
 			$id = $data['loan_details'][0]['loan_id'];
             $amount = $data['loan_details'][0]['loan_payable'];

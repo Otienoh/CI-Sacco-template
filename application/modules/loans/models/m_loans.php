@@ -49,10 +49,10 @@ function confirm_guarantors_approval($loan_id)
 function loan_repayment($loan_id)
 {
 	$id=$this->input->post('edit_id');
-	$result = $this->db->query("SELECT `loan_balance` FROM `loans` WHERE `status` = '0' OR `is_paid` = '0' AND `user_id` = '$user_id'")->result_array();
+	$result = $this->db->query("SELECT `loan_balance` FROM `loans` WHERE `status` = '0' OR `is_paid` = '0' AND `loan_id` = '$loan_id'")->result_array();
 	
 	$loan_balance = $result[0]['loan_balance'];
-	echo($loan_balance);die();
+	// echo($loan_balance);die();
 	$amount_payable=$this->input->post('amount_payable');
 	$amount_deposit=$this->input->post('edit_amount');
 	$loan_balance = ($loan_balance-$amount_deposit);
