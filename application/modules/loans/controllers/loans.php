@@ -8,9 +8,14 @@ class Loans extends MY_Controller
 	}
 
 	function create(){
-
-		$data= $this->get_data_from_post();
 		$this->load->model('m_loans');
+		$block = $this->m_loans->check_previous_loans($this->session->userdata('user_id'));
+		if ($block) {
+			$this->session->set_flashdata('block','Sorry You can not place a new loan as you already have an existing pending loan.');
+			redirect('loans/view_loans/'.$this->session->userdata('user_id'));
+		}
+		$data= $this->get_data_from_post();
+		
 		$data['maloantype']  = $this->m_loans->get_loan_type()->result_array();
 		$data['section'] = "ADI Sacco";
 		$data['subtitle'] = "Loan Module";
@@ -174,6 +179,7 @@ class Loans extends MY_Controller
 	   $data =  $this->get_data_from_post();
 	    
 	    $data['loan_payable']= ((($data['rates']*$data['months'])/100)*$data['loan_amount'])+$data['loan_amount'];
+	    $data['loan_balance']= $data['loan_payable'];
 		$data['instalments']=$data['loan_payable']/$data['months'];
 		$data['status']= 0; 
 		$data['user_id']=$this->session->userdata('user_id');

@@ -1,5 +1,10 @@
 <div class="row">
 	<div class="col-md-12">
+		<?php if($this->session->flashdata('block')){
+		echo '<div  class="alert alert-danger">
+					<p style="color: red;">'.$this->session->flashdata('block').'</p>
+				</div>';
+		}?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<i class="fa fa-external-link-square"></i>
