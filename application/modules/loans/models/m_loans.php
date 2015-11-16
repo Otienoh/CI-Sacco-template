@@ -49,14 +49,41 @@ function confirm_guarantors_approval($loan_id)
 function loan_repayment($loan_id)
 {
 	$id=$this->input->post('edit_id');
+	$result = $this->db->query("SELECT `loan_balance` FROM `loans` WHERE `status` = '0' OR `is_paid` = '0' AND `loan_id` = '$loan_id'")->result_array();
 	
+	$loan_balance = $result[0]['loan_balance'];
+	// echo($loan_balance);die();
 	$amount_payable=$this->input->post('amount_payable');
 	$amount_deposit=$this->input->post('edit_amount');
+	$loan_balance = ($loan_balance-$amount_deposit);
+
+	if ($loan_balance==0) {
+		$update = array(
+					'loan_balance' => $loan_balance,
+					'is_paid' => 1 );
+	}else{
+		$update = array(
+					'loan_balance' => $loan_balance );
+	}
+	$this->_update($loan_id,$update);
+
 	$data = array(
 				'loan_id' => $loan_id,
 				'payment_amount' => $amount_deposit
 				);
 	return $this->db->insert('loan_repayment', $data);
+}
+
+function check_previous_loans($user_id)
+{
+	$result = $this->db->query("SELECT * FROM `loans` WHERE `status` = '0' OR `is_paid` = '0' AND `user_id` = '$user_id'")->result_array();
+	if ($result) {
+		$block = TRUE;
+	} else {
+		$block = FALSE;
+	}
+	// echo $block;die();
+	return $block;
 }
 
 function get($order_by){
@@ -95,7 +122,7 @@ $this->db->insert($table, $data);
 
 function _update($id, $data){
 $table = $this->get_table();
-$this->db->where('id', $id);
+$this->db->where('loan_id', $id);
 $this->db->update($table, $data);
 }
 

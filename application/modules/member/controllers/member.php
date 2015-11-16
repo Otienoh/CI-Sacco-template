@@ -32,6 +32,7 @@ class Member extends MY_Controller
 	function loan_preview($loan_id){
 		$this->load->model('m_member');
 		$data['loan_details'] = $this->loans->_custom_query($this->m_member->get_loan_details($loan_id))->result_array();
+		$data['button'] = NULL;
 		if ($data['loan_details'][0]['is_paid']==0) {
 			$id = $data['loan_details'][0]['loan_id'];
             $amount = $data['loan_details'][0]['loan_payable'];
@@ -75,6 +76,22 @@ class Member extends MY_Controller
 		if ($repay) {
 			redirect('loans/view_loans/'.$this->session->userdata('user_id'));
 		}
+	}
+
+	function reports()
+	{
+		$this->load->module('reports');
+		$data['loans_chart'] = $this->reports->loan_monthly_amounts(date('Y'),$this->session->userdata('user_id'));
+		$data['savings_chart'] = $this->reports->savings_monthly_amounts(date('Y'),$this->session->userdata('user_id'));
+		$data['height'] = 450;
+		$data['year'] = date('Y');
+		$data['section'] = "ADI Sacco";
+	    $data['subtitle'] = "Member";
+	  	$data['page_title'] = "Reports";
+	  	$data['subpage_title'] = "Statistics and Analytics";
+		$data['module'] = "member";
+		$data['view_file'] = "reports";
+		echo Modules::run('template/member', $data);
 	}
 }
 ?>

@@ -12,9 +12,11 @@
             
             </div>
              <!-- <button class="btn btn-danger">Decline Loan</button> -->
-            <div class="col-sm-3" id="button">
-              <?php echo $button;?>
-            </div>
+            <?php if ($button) {
+            echo '<div class="col-sm-3" id="button">
+                    '.$button.'
+                  </div>';
+            }?>
           </div>
           <div class="row">
             <div class="col-sm-6">

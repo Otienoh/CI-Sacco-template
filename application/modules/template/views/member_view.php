@@ -189,7 +189,7 @@
               </a>
             </li> -->
             <li>
-              <a href="#"><i class="clip-file"></i>
+              <a href="<?php echo base_url();?>member/reports"><i class="clip-file"></i>
                 <span class="title">REPORTS</span>
                 <span class="selected"></span>
               </a>
