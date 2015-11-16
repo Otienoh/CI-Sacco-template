@@ -18,9 +18,9 @@ class Member extends MY_Controller
 		$data['section'] = "ADI Sacco";
 	    $data['subtitle'] = "Members";
 	  	$data['page_title'] = "Dashboard";
-	  	$data['subpage_title'] = "overview & stats";
-		$data['module'] = "dashboard";
-		$data['view_file'] = "home";
+	  	$data['subpage_title'] = "Your Timeline";
+		$data['module'] = "member";
+		$data['view_file'] = "dashboard";
 		echo Modules::run('template/member', $data);	
 	}
 
