@@ -43,8 +43,9 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Applicant</th>
 								<th>Loan Amount</th>
+								<th>Amount Repayable</th>
+								<th>Amount Balance</th>
 								<th>Loan Purpose</th>
 								<th>Guarantor 1</th>
 								<th>Guarantor 2</th>

@@ -231,8 +231,9 @@ class Loans extends MY_Controller
 				// echo "<pre>";print_r($guarantor2[0]['last_name']);die();
 				$loans_data .= '<tr>
 									<td>'.$count.'</td>
-									<td>'.$applicant[0]['last_name'].' '.$applicant[0]['first_name'].'</td>
 									<td>'.$value['loan_amount'].'</td>
+									<td>'.$value['loan_payable'].'</td>
+									<td>'.$value['loan_balance'].'</td>
 									<td>'.$value['loan_purpose'].'</td>
 									<td>'.$guarantor1[0]['last_name'].' '.$guarantor1[0]['first_name'].'</td>
 									<td>'.$guarantor2[0]['last_name'].' '.$guarantor2[0]['first_name'].'</td>
